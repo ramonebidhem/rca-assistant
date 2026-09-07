@@ -19,6 +19,7 @@ info() { printf "\033[1;34m›\033[0m %s\n" "$1"; }
 ok()   { printf "\033[1;32m✓\033[0m %s\n" "$1"; }
 err()  { printf "\033[1;31m✗\033[0m %s\n" "$1"; }
 
+LINK_FILE="/tmp/rca-link.txt"
 SERVER_PID=""
 TUNNEL_PID=""
 cleanup() {
@@ -26,9 +27,22 @@ cleanup() {
   info "Stopping…"
   [ -n "$TUNNEL_PID" ] && kill "$TUNNEL_PID" 2>/dev/null
   [ -n "$SERVER_PID" ] && kill "$SERVER_PID" 2>/dev/null
+  rm -f "$LINK_FILE"
   exit 0
 }
 trap cleanup INT TERM
+
+# Refuse to run twice — a second copy would kill the first one's server/tunnel.
+for pid in $(pgrep -f "bash .*share\.sh" 2>/dev/null); do
+  if [ "$pid" != "$$" ] && [ "$pid" != "$PPID" ]; then
+    err "share.sh is already running (pid $pid)."
+    if [ -f "$LINK_FILE" ]; then
+      printf "  Current link: \033[1;36m%s\033[0m\n" "$(cat "$LINK_FILE")"
+    fi
+    echo "  Stop it with:  pkill -f share.sh"
+    exit 1
+  fi
+done
 
 # 1 ── Docker runtime -------------------------------------------------------
 if ! colima status >/dev/null 2>&1; then
@@ -88,29 +102,60 @@ curl -sf "http://localhost:${APP_PORT}/api/health" >/dev/null 2>&1 \
 ok "App running locally on http://localhost:${APP_PORT}"
 
 # 5 ── Public tunnel --------------------------------------------------------
-pkill -f "cloudflared tunnel" 2>/dev/null
-: > /tmp/rca-tunnel.log
-cloudflared tunnel --url "http://localhost:${APP_PORT}" --no-autoupdate \
-  > /tmp/rca-tunnel.log 2>&1 &
-TUNNEL_PID=$!
-
 PUBLIC_URL=""
-for _ in $(seq 1 60); do
-  PUBLIC_URL="$(grep -oE 'https://[a-z0-9-]+\.trycloudflare\.com' /tmp/rca-tunnel.log 2>/dev/null | head -1 || true)"
-  [ -n "$PUBLIC_URL" ] && break
-  sleep 1
-done
 
-echo
-if [ -n "$PUBLIC_URL" ]; then
+start_tunnel() {
+  pkill -f "cloudflared tunnel" 2>/dev/null
+  sleep 1
+  : > /tmp/rca-tunnel.log
+  cloudflared tunnel --url "http://localhost:${APP_PORT}" --no-autoupdate \
+    > /tmp/rca-tunnel.log 2>&1 &
+  TUNNEL_PID=$!
+  PUBLIC_URL=""
+  for _ in $(seq 1 45); do
+    PUBLIC_URL="$(grep -oE 'https://[a-z0-9-]+\.trycloudflare\.com' /tmp/rca-tunnel.log 2>/dev/null | head -1 || true)"
+    [ -n "$PUBLIC_URL" ] && break
+    sleep 1
+  done
+  [ -n "$PUBLIC_URL" ] || return 1
+  echo "$PUBLIC_URL" > "$LINK_FILE"
+}
+
+announce() {
+  echo
   printf "\033[1;32m══════════════════════════════════════════════════════════\033[0m\n"
   printf "  Share this link:  \033[1;36m%s\033[0m\n" "$PUBLIC_URL"
   printf "  Admin panel:      %s/admin\n" "$PUBLIC_URL"
   printf "\033[1;32m══════════════════════════════════════════════════════════\033[0m\n"
-  printf "  Keep this window open. Press Ctrl+C to stop sharing.\n"
-else
-  err "No tunnel URL yet — check /tmp/rca-tunnel.log"
-fi
-echo
+  printf "  Keep this window open. Ctrl+C stops sharing.\n"
+  printf "  Forgot the link?  cat %s\n" "$LINK_FILE"
+  echo
+}
 
-wait "$SERVER_PID"
+for attempt in 1 2 3; do
+  info "Opening public tunnel (attempt ${attempt}/3)…"
+  start_tunnel && break
+  err "Tunnel did not come up, retrying…"
+done
+
+if [ -z "$PUBLIC_URL" ]; then
+  err "Could not open a tunnel — see /tmp/rca-tunnel.log"
+  kill "$SERVER_PID" 2>/dev/null
+  exit 1
+fi
+ok "Tunnel open"
+announce
+
+# Supervise: Cloudflare quick tunnels can drop. Reconnect and show the new link.
+while true; do
+  sleep 5
+  if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+    err "App stopped unexpectedly — see /tmp/rca-server.log"
+    break
+  fi
+  if ! kill -0 "$TUNNEL_PID" 2>/dev/null; then
+    err "Tunnel dropped — reconnecting (the link will change)…"
+    if start_tunnel; then ok "Reconnected"; announce; else err "Reconnect failed"; break; fi
+  fi
+done
+cleanup
