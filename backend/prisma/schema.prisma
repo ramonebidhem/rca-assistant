@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StepType {
+  step
+  check
+}
+
+enum MediaKind {
+  OK
+  NG
+}
+
+enum SuggestionStatus {
+  pending
+  approved
+  rejected
+}
+
+enum UserRole {
+  admin
+}
+
+model Category {
+  id           Int           @id @default(autoincrement())
+  name         String
+  description  String?
+  imagePath    String?       @map("image_path")
+  sortOrder    Int           @default(0) @map("sort_order")
+  isActive     Boolean       @default(true) @map("is_active")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  failureTypes FailureType[]
+
+  @@map("categories")
+}
+
+model FailureType {
+  id          Int         @id @default(autoincrement())
+  categoryId  Int         @map("category_id")
+  name        String
+  description String?
+  imagePath   String?     @map("image_path")
+  sortOrder   Int         @default(0) @map("sort_order")
+  isActive    Boolean     @default(true) @map("is_active")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  rootCauses  RootCause[]
+  suggestions Suggestion[]
+
+  @@unique([categoryId, name])
+  @@map("failure_types")
+}
+
+model RootCause {
+  id            Int             @id @default(autoincrement())
+  failureTypeId Int             @map("failure_type_id")
+  title         String
+  description   String?
+  rank          Int             @default(0)
+  isActive      Boolean         @default(true) @map("is_active")
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+
+  failureType   FailureType     @relation(fields: [failureTypeId], references: [id], onDelete: Restrict)
+  steps         RootCauseStep[]
+  media         Media[]
+
+  @@unique([failureTypeId, title])
+  @@map("root_causes")
+}
+
+model RootCauseStep {
+  id          Int       @id @default(autoincrement())
+  rootCauseId Int       @map("root_cause_id")
+  stepNo      Int       @map("step_no")
+  instruction String
+  type        StepType  @default(step)
+
+  rootCause   RootCause @relation(fields: [rootCauseId], references: [id], onDelete: Cascade)
+
+  @@map("root_cause_steps")
+}
+
+model Media {
+  id          Int       @id @default(autoincrement())
+  rootCauseId Int       @map("root_cause_id")
+  kind        MediaKind
+  filePath    String    @map("file_path")
+  caption     String?
+
+  rootCause   RootCause @relation(fields: [rootCauseId], references: [id], onDelete: Cascade)
+
+  @@map("media")
+}
+
+model Suggestion {
+  id            Int              @id @default(autoincrement())
+  failureTypeId Int              @map("failure_type_id")
+  text          String
+  photoPath     String?          @map("photo_path")
+  status        SuggestionStatus @default(pending)
+  adminComment  String?          @map("admin_comment")
+  submittedAt   DateTime         @default(now()) @map("submitted_at")
+  reviewedAt    DateTime?        @map("reviewed_at")
+
+  failureType   FailureType      @relation(fields: [failureTypeId], references: [id], onDelete: Restrict)
+
+  @@map("suggestions")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @unique
+  passwordHash String    @map("password_hash")
+  role         UserRole  @default(admin)
+  lastLogin    DateTime? @map("last_login")
+
+  @@map("users")
+}
+
+// Uploaded images stored in the database so they survive restarts/redeploys
+// on hosts with an ephemeral filesystem (no persistent volume required).
+model UploadedFile {
+  id        String   @id // uuid; public path is /uploads/<id>.<ext>
+  mimeType  String   @map("mime_type")
+  data      Bytes
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("uploaded_files")
+}
+
+// Singleton branding/site settings (always id = 1).
+model Settings {
+  id        Int      @id @default(1)
+  siteName  String   @default("Défauthèque") @map("site_name")
+  slogan    String   @default("Find the cause. Fix it right.")
+  logoPath  String?  @map("logo_path")
+  logoScale Int      @default(100) @map("logo_scale") // % size multiplier for the logo
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}

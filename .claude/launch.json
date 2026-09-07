@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "frontend",
+      "port": 5173
+    },
+    {
+      "name": "city-wallpaper",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8420", "--directory", "/Users/mac/City Wallpaper"],
+      "port": 8420
+    }
+  ]
+}

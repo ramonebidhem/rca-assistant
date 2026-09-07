@@ -1,0 +1,40 @@
+# Local production-like stack: Postgres + the single-service app image
+# (Express API serving the built React frontend). Mirrors what gets deployed.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: defautheque
+      POSTGRES_PASSWORD: defautheque
+      POSTGRES_DB: defautheque
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U defautheque']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://defautheque:defautheque@postgres:5432/defautheque?schema=public
+      JWT_SECRET: change-this-jwt-secret-in-production
+      JWT_EXPIRES_IN: 12h
+      PORT: 4000
+      CLIENT_DIR: /app/client
+      CORS_ORIGIN: ''
+      # Only used when the admin user is first created.
+      ADMIN_PASSWORD: ChangeMe123!
+    ports:
+      - '8080:4000'
+
+volumes:
+  pgdata:
