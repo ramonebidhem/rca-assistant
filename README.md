@@ -158,21 +158,56 @@ content tree (categories → failure types → root causes → steps → checks 
 The app deploys as **one web service + one Postgres database**. No persistent
 disk is needed because images live in the database.
 
-### Render (blueprint — easiest)
+### Free deployment: Render + Neon
 
-1. Push this repository to GitHub.
-2. In [Render](https://render.com): **New → Blueprint**, connect the repo.
-   Render reads `render.yaml` and creates the web service + database, wiring
-   `DATABASE_URL` and generating `JWT_SECRET` automatically.
-3. When prompted, set **`ADMIN_PASSWORD`** to a strong password (used only when
-   the admin user is first created).
-4. Deploy. First boot runs migrations and seeds the knowledge base.
+Permanently free, no credit card. Render hosts the app; Neon hosts the database.
+(Render's own free Postgres is deliberately **not** used — it expires after 30
+days.)
+
+**1. Create the database (Neon)**
+
+- Sign up at [neon.tech](https://neon.tech) → create a project.
+- Copy the **direct** connection string (the host *without* `-pooler`), which
+  looks like:
+  `postgresql://user:pass@ep-xxx.region.aws.neon.tech/neondb?sslmode=require`
+  The direct connection keeps Prisma migrations simple.
+
+**2. Push this repo to GitHub**
+
+**3. Deploy (Render — no credit card)**
+
+> Use **New → Web Service**, *not* New → Blueprint. Render asks for a credit
+> card to use Blueprints even when every service is free; creating a web
+> service manually does not.
+
+- [render.com](https://render.com) → **New → Web Service** → connect the repo.
+- Render auto-detects the root `Dockerfile`. Choose the **Free** instance type.
+- Add these environment variables:
+
+  | Key | Value |
+  | --- | --- |
+  | `DATABASE_URL` | your Neon **direct** connection string (`?sslmode=require`) |
+  | `JWT_SECRET` | a long random string |
+  | `ADMIN_PASSWORD` | a strong password for the `admin` account |
+  | `CORS_ORIGIN` | *(leave empty)* |
+
+  Do **not** set `PORT` — Render injects it and the app binds to it.
+  `NODE_ENV` and `CLIENT_DIR` are already set inside the image.
+
+- (Optional, under Advanced) Health Check Path: `/api/health`
+- Create the service. First boot applies migrations and seeds the knowledge base.
 
 Your public URL will look like `https://rca-assistant.onrender.com`.
 
-> On Render's free plan the service sleeps after ~15 minutes idle (first request
-> then takes ~30–60 s to wake), and free Postgres instances expire after 30 days.
-> Upgrade the instance/database for a permanently warm deployment.
+**Free-tier trade-offs**
+
+| Limit | Effect |
+| --- | --- |
+| Render sleeps after ~15 min idle | First visit takes ~30–60 s to wake, then it's fast |
+| Render: 750 instance-hours/month | Plenty for one always-available service |
+| Neon: 0.5 GB storage | Images live in Postgres (~500 KB max each) → roughly 1000 photos |
+
+Upgrading Render's instance (a few $/month) removes the sleep delay.
 
 ### Any other Docker host
 

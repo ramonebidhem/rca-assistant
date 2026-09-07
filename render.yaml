@@ -1,12 +1,12 @@
-# Render blueprint — deploys the app as one web service + one Postgres database.
-# In Render: New → Blueprint → connect this repo. Everything below is created
-# automatically; DATABASE_URL and JWT_SECRET are wired/generated for you.
-databases:
-  - name: rca-assistant-db
-    databaseName: rca_assistant
-    user: rca_assistant
-    plan: free
-
+# Render blueprint — OPTIONAL.
+#
+# NOTE: Render requires a credit card to use Blueprints, even for free services.
+# To deploy for free without a card, create the service manually instead:
+# New → Web Service → connect this repo (Docker is auto-detected) → Free plan,
+# then add the environment variables listed below by hand. See README.
+#
+# The database is NOT created here on purpose: Render's free Postgres expires
+# after 30 days. Use a permanently-free database on Neon (https://neon.tech).
 services:
   - type: web
     name: rca-assistant
@@ -15,10 +15,13 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
+      # Paste your Neon connection string (use the DIRECT, non-pooled one so
+      # Prisma migrations run cleanly). Must include ?sslmode=require
       - key: DATABASE_URL
-        fromDatabase:
-          name: rca-assistant-db
-          property: connectionString
+        sync: false
+      # Set a strong password — used only when the admin user is first created.
+      - key: ADMIN_PASSWORD
+        sync: false
       # Generated once by Render and kept stable across deploys.
       - key: JWT_SECRET
         generateValue: true
@@ -26,12 +29,7 @@ services:
         value: production
       - key: CLIENT_DIR
         value: /app/client
-      - key: PORT
-        value: 4000
+      # PORT is intentionally omitted — Render injects it and the app binds to it.
       # Same-origin app: leave empty so the API reflects the request origin.
       - key: CORS_ORIGIN
         value: ''
-      # Render prompts for this on first deploy — set a strong admin password.
-      # Used only when the admin user is first created.
-      - key: ADMIN_PASSWORD
-        sync: false
