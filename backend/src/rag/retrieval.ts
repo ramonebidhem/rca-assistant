@@ -61,15 +61,23 @@ export function tokenize(text: string): string[] {
   return tokens;
 }
 
-// Expand query tokens with domain synonyms so related wording still matches.
-export function expandQueryTokens(tokens: string[]): string[] {
-  const out = new Set<string>();
+// Synonyms broaden recall, but must never outweigh the words actually typed —
+// otherwise "damaged seal" scores higher on "strands cut/nicked" (damaged→cut)
+// than on "Seal damaged".
+const SYNONYM_WEIGHT = 0.3;
+
+// Map query tokens to weights: 1.0 for typed words, less for synonyms.
+export function expandQueryTokens(tokens: string[]): Map<string, number> {
+  const weights = new Map<string, number>();
   for (const t of tokens) {
-    out.add(t);
+    weights.set(t, 1);
     const group = synonymIndex.get(t) ?? synonymIndex.get(singularise(t));
-    if (group) group.forEach((g) => out.add(g));
+    for (const g of group ?? []) {
+      // Keep the higher weight if a word is both typed and a synonym.
+      weights.set(g, Math.max(weights.get(g) ?? 0, SYNONYM_WEIGHT));
+    }
   }
-  return [...out];
+  return weights;
 }
 
 export interface IndexedDoc<T> {
@@ -107,18 +115,19 @@ export class Bm25Index<T> {
   }
 
   // Returns every doc with a positive score, ranked high → low.
-  search(queryTokens: string[]): { ref: T; score: number }[] {
+  // `queryTerms` maps each term to a weight (see expandQueryTokens).
+  search(queryTerms: Map<string, number>): { ref: T; score: number }[] {
     const results: { ref: T; score: number }[] = [];
     for (let i = 0; i < this.docs.length; i++) {
       const counts = this.tf[i];
       const dl = this.docs[i].tokens.length;
       let score = 0;
-      for (const term of queryTokens) {
+      for (const [term, weight] of queryTerms) {
         const f = counts.get(term);
         if (!f) continue;
         const idf = this.idf(term);
         const denom = f + this.k1 * (1 - this.b + (this.b * dl) / (this.avgdl || 1));
-        score += idf * ((f * (this.k1 + 1)) / denom);
+        score += weight * idf * ((f * (this.k1 + 1)) / denom);
       }
       if (score > 0) results.push({ ref: this.docs[i].ref, score });
     }

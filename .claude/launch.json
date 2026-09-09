@@ -9,6 +9,20 @@
       "port": 5173
     },
     {
+      "name": "streamlit",
+      "runtimeExecutable": ".venv/bin/streamlit",
+      "runtimeArgs": [
+        "run",
+        "streamlit_app.py",
+        "--server.port",
+        "8501",
+        "--server.headless",
+        "true"
+      ],
+      "cwd": "streamlit-app",
+      "port": 8501
+    },
+    {
       "name": "city-wallpaper",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8420", "--directory", "/Users/mac/City Wallpaper"],

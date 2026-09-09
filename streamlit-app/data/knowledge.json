@@ -1,0 +1,3145 @@
+{
+  "settings": {
+    "siteName": "RCA ASSISTANT",
+    "slogan": "Quality Defects & Root Cause Knowledge Platform",
+    "logoPath": "/uploads/logo-dea29209-bd05-4346-a589-8013074a4393.png",
+    "logoScale": 210
+  },
+  "categories": [
+    {
+      "id": 48,
+      "code": "CAT-01",
+      "name": "Crimping",
+      "description": "Terminal crimping defects on automatic and benchtop crimping presses (Komax / Schleuniger). Detected by crimp-force monitoring (CFA) and cross-section (micrograph) analysis",
+      "imagePath": "/uploads/seed-30a9e4ef-fac3-46c3-8235-521b80868aca.webp",
+      "sortOrder": 1,
+      "isActive": true,
+      "failureTypeCount": 9,
+      "createdAt": "2026-08-13T14:59:28.018Z",
+      "updatedAt": "2026-08-13T15:33:36.890Z"
+    },
+    {
+      "id": 49,
+      "code": "CAT-02",
+      "name": "Seal",
+      "description": "Single-wire seal (grommet) defects on seal-crimp modules — sealing integrity for sealed connector cavities and seal pull-force requirements.",
+      "imagePath": "/uploads/seed-64dab37d-36aa-43cc-aaf2-9b704db0bc21.webp",
+      "sortOrder": 2,
+      "isActive": true,
+      "failureTypeCount": 7,
+      "createdAt": "2026-08-13T14:59:29.061Z",
+      "updatedAt": "2026-08-13T15:33:51.581Z"
+    },
+    {
+      "id": 50,
+      "code": "CAT-03",
+      "name": "Stripping",
+      "description": "Cut & strip defects on automatic cut/strip machines (Komax / Schleuniger) — conductor and insulation quality",
+      "imagePath": "/uploads/seed-c51693c4-b236-4bdc-9671-4fd039dac08e.webp",
+      "sortOrder": 3,
+      "isActive": true,
+      "failureTypeCount": 9,
+      "createdAt": "2026-08-13T14:59:29.713Z",
+      "updatedAt": "2026-08-13T15:34:11.981Z"
+    }
+  ],
+  "failureTypes": [
+    {
+      "id": 79,
+      "code": "FT-011",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Strands out of the crimp",
+      "description": "One or more conductor strands are not enclosed by the wire barrel and lie outside the crimp.",
+      "imagePath": "/uploads/seed-2e9db79f-bb39-4c39-bc47-5796cc4ed7bd.webp",
+      "sortOrder": 1,
+      "isActive": true,
+      "rootCauseCount": 4,
+      "createdAt": "2026-08-13T14:59:28.249Z",
+      "updatedAt": "2026-08-13T14:59:28.249Z"
+    },
+    {
+      "id": 80,
+      "code": "FT-012",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Strands on the crimp",
+      "description": "Loose strands (whiskers) lie on top of the insulation crimp or between the wire and insulation barrels, risking shorts.",
+      "imagePath": "/uploads/seed-ed04823f-17f3-42e2-8061-0c60a408e5a7.webp",
+      "sortOrder": 2,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:28.322Z",
+      "updatedAt": "2026-08-13T14:59:28.322Z"
+    },
+    {
+      "id": 81,
+      "code": "FT-013",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Crimp height out of specification",
+      "description": "Measured conductor crimp height is outside the tolerance band, affecting mechanical and electrical integrity.",
+      "imagePath": "/uploads/seed-56b7d768-1919-494d-a2e0-0297ea8c0c8e.webp",
+      "sortOrder": 3,
+      "isActive": true,
+      "rootCauseCount": 4,
+      "createdAt": "2026-08-13T14:59:28.566Z",
+      "updatedAt": "2026-08-13T14:59:28.566Z"
+    },
+    {
+      "id": 82,
+      "code": "FT-014",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Bellmouth non-conform",
+      "description": "The flare (bellmouth) at the wire-barrel ends is missing, too small, or excessive at the front or rear.",
+      "imagePath": "/uploads/seed-613777b5-87dd-48c6-88ca-494cbb7b9c3d.webp",
+      "sortOrder": 4,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:28.649Z",
+      "updatedAt": "2026-08-13T14:59:28.649Z"
+    },
+    {
+      "id": 83,
+      "code": "FT-015",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Insufficient conductor brush",
+      "description": "The conductor brush (strands visible beyond the wire barrel) is too short or not visible, per IPC/WHMA-A-620.",
+      "imagePath": "/uploads/seed-a01544e7-bd3e-4e7e-b43d-bebbe254bed2.webp",
+      "sortOrder": 5,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:28.761Z",
+      "updatedAt": "2026-08-13T14:59:28.761Z"
+    },
+    {
+      "id": 84,
+      "code": "FT-016",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Insulation in the conductor crimp",
+      "description": "Insulation is caught inside the wire (conductor) barrel, reducing electrical contact and pull force.",
+      "imagePath": "/uploads/seed-7ce9a39a-0df5-4cd0-9e5e-84e478648f8f.webp",
+      "sortOrder": 6,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:28.815Z",
+      "updatedAt": "2026-08-13T14:59:28.815Z"
+    },
+    {
+      "id": 85,
+      "code": "FT-017",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Insulation crimp grip out of tolerance",
+      "description": "The insulation (support) crimp is too loose (no strain relief) or too tight (cuts the insulation).",
+      "imagePath": "/uploads/seed-fa4c6af2-9e34-44fd-bd7a-5e5860feeabf.webp",
+      "sortOrder": 7,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:28.879Z",
+      "updatedAt": "2026-08-13T14:59:28.879Z"
+    },
+    {
+      "id": 86,
+      "code": "FT-018",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Terminal deformation",
+      "description": "The terminal is bent, twisted, rolled, or the contact / box section is deformed after crimping.",
+      "imagePath": "/uploads/seed-99da2a41-ab7b-4b5c-87cd-f15fbdfb1a9e.webp",
+      "sortOrder": 8,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:28.926Z",
+      "updatedAt": "2026-08-13T14:59:28.926Z"
+    },
+    {
+      "id": 87,
+      "code": "FT-019",
+      "categoryId": 48,
+      "categoryName": "Crimping",
+      "name": "Crimp force curve out of tolerance",
+      "description": "The crimp-force monitor (Komax ACO / Schleuniger CFA) flags the crimp-force curve outside the taught envelope.",
+      "imagePath": "/uploads/seed-a8af59d2-3a64-4f3d-ae3c-fc11b3d2dc1e.webp",
+      "sortOrder": 9,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:28.987Z",
+      "updatedAt": "2026-08-13T14:59:28.987Z"
+    },
+    {
+      "id": 88,
+      "code": "FT-021",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Missing seal",
+      "description": "No single-wire seal is present on the wire before the seal crimp.",
+      "imagePath": "/uploads/seed-dd8b88dd-7b82-4d62-9ee3-e07a20bcbf02.webp",
+      "sortOrder": 1,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:29.090Z",
+      "updatedAt": "2026-08-13T14:59:29.090Z"
+    },
+    {
+      "id": 89,
+      "code": "FT-022",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Seal damaged",
+      "description": "The seal is cut, torn, or nicked, compromising the sealing lips.",
+      "imagePath": "/uploads/seed-2b1d77db-750e-45dc-ab8f-93635a0d2c88.webp",
+      "sortOrder": 2,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:29.327Z",
+      "updatedAt": "2026-08-13T14:59:29.327Z"
+    },
+    {
+      "id": 90,
+      "code": "FT-023",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Seal position out of tolerance",
+      "description": "The seal sits too far forward or back on the wire relative to the terminal.",
+      "imagePath": "/uploads/seed-a5e8ed9d-1744-4d12-9623-5704b534856a.webp",
+      "sortOrder": 3,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:29.389Z",
+      "updatedAt": "2026-08-13T14:59:29.389Z"
+    },
+    {
+      "id": 91,
+      "code": "FT-024",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Seal deformed by crimp",
+      "description": "The elastic seal is severely deformed by the insulation / seal crimp, impairing sealing and pull force.",
+      "imagePath": "/uploads/seed-d0c3d234-1d20-4c7e-9ecf-f93878b322e9.webp",
+      "sortOrder": 4,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:29.441Z",
+      "updatedAt": "2026-08-13T14:59:29.441Z"
+    },
+    {
+      "id": 92,
+      "code": "FT-025",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Wrong seal type or size",
+      "description": "A seal of the wrong colour / size / part number is fitted for the wire cross-section.",
+      "imagePath": "/uploads/seed-1204859d-503f-4a35-b43f-696a5042fb51.webp",
+      "sortOrder": 5,
+      "isActive": true,
+      "rootCauseCount": 1,
+      "createdAt": "2026-08-13T14:59:29.491Z",
+      "updatedAt": "2026-08-13T14:59:29.491Z"
+    },
+    {
+      "id": 93,
+      "code": "FT-026",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Seal not fully seated on the wire",
+      "description": "The seal is only partially pushed onto the wire; it can move or leak.",
+      "imagePath": "/uploads/seed-34ae3e65-5cc1-4ae3-a027-2231233c4192.webp",
+      "sortOrder": 6,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:29.623Z",
+      "updatedAt": "2026-08-13T14:59:29.623Z"
+    },
+    {
+      "id": 94,
+      "code": "FT-027",
+      "categoryId": 49,
+      "categoryName": "Seal",
+      "name": "Double seal or seal skew",
+      "description": "Two seals are loaded, or the seal is cocked / skewed on the wire.",
+      "imagePath": "/uploads/seed-be8198a5-21e7-4d92-8de6-6d6e9d01242c.webp",
+      "sortOrder": 7,
+      "isActive": true,
+      "rootCauseCount": 1,
+      "createdAt": "2026-08-13T14:59:29.675Z",
+      "updatedAt": "2026-08-13T14:59:29.675Z"
+    },
+    {
+      "id": 95,
+      "code": "FT-031",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Strands cut or nicked",
+      "description": "Conductor strands are nicked or fully cut during stripping — a defect for all classes when the conductor is damaged, per IPC/WHMA-A-620.",
+      "imagePath": "/uploads/seed-faa5eb07-7ecd-45ac-a2fc-6c9ffd9d7d55.webp",
+      "sortOrder": 1,
+      "isActive": true,
+      "rootCauseCount": 4,
+      "createdAt": "2026-08-13T14:59:29.928Z",
+      "updatedAt": "2026-08-13T14:59:29.928Z"
+    },
+    {
+      "id": 96,
+      "code": "FT-032",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Insulation residue on conductor",
+      "description": "Slivers or rings of insulation remain on the conductor after stripping.",
+      "imagePath": "/uploads/seed-f03e713d-6d94-4b43-9ad2-4fc615bd5c03.webp",
+      "sortOrder": 2,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:29.992Z",
+      "updatedAt": "2026-08-13T14:59:29.992Z"
+    },
+    {
+      "id": 97,
+      "code": "FT-033",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Strip length out of specification",
+      "description": "The stripped length is outside the tolerance for the downstream crimp or seal.",
+      "imagePath": "/uploads/seed-636a49d3-960c-49c0-be0e-e6d6932f0cda.webp",
+      "sortOrder": 3,
+      "isActive": true,
+      "rootCauseCount": 3,
+      "createdAt": "2026-08-13T14:59:30.047Z",
+      "updatedAt": "2026-08-13T14:59:30.047Z"
+    },
+    {
+      "id": 98,
+      "code": "FT-034",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Incomplete insulation removal",
+      "description": "The insulation is only partly cut or removed, so the slug hangs on or the strip is partial.",
+      "imagePath": "/uploads/seed-58040ef5-e901-4886-97a9-b2e808f6962a.webp",
+      "sortOrder": 4,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:30.105Z",
+      "updatedAt": "2026-08-13T14:59:30.105Z"
+    },
+    {
+      "id": 99,
+      "code": "FT-035",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Conductor deformed or flattened",
+      "description": "The conductor is pinched, flattened, or strands are distorted by the strip clamps or blades.",
+      "imagePath": "/uploads/seed-e1d855a9-64f0-4418-8632-e8d9c421db44.webp",
+      "sortOrder": 5,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:30.341Z",
+      "updatedAt": "2026-08-13T14:59:30.341Z"
+    },
+    {
+      "id": 100,
+      "code": "FT-036",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Insulation not removed",
+      "description": "The wire end is cut, but the insulation is not stripped at all.",
+      "imagePath": "/uploads/seed-57b028ac-5ff8-4c5e-8666-e989b102ea3f.webp",
+      "sortOrder": 6,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:30.385Z",
+      "updatedAt": "2026-08-13T14:59:30.385Z"
+    },
+    {
+      "id": 101,
+      "code": "FT-037",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Cut length out of tolerance",
+      "description": "The overall wire cut length is outside tolerance.",
+      "imagePath": "/uploads/seed-89d8a115-003f-478d-8d7c-8e63e51eb469.webp",
+      "sortOrder": 7,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:30.616Z",
+      "updatedAt": "2026-08-13T14:59:30.616Z"
+    },
+    {
+      "id": 102,
+      "code": "FT-038",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Ragged or torn insulation cut",
+      "description": "The insulation cut edge is ragged, torn, or stretched rather than clean.",
+      "imagePath": "/uploads/seed-77dafbed-7b99-4b05-9f92-a2a71fc3eb97.webp",
+      "sortOrder": 8,
+      "isActive": true,
+      "rootCauseCount": 2,
+      "createdAt": "2026-08-13T14:59:30.667Z",
+      "updatedAt": "2026-08-13T14:59:30.667Z"
+    },
+    {
+      "id": 103,
+      "code": "FT-039",
+      "categoryId": 50,
+      "categoryName": "Stripping",
+      "name": "Conductor ring-cut (score) on strands",
+      "description": "A visible ring score around the conductor from blade over-penetration, creating a stress riser.",
+      "imagePath": "/uploads/seed-01705634-1f08-4285-97f7-6e7c11aa983c.webp",
+      "sortOrder": 9,
+      "isActive": true,
+      "rootCauseCount": 1,
+      "createdAt": "2026-08-13T14:59:30.716Z",
+      "updatedAt": "2026-08-13T14:59:30.716Z"
+    }
+  ],
+  "rootCauses": [
+    {
+      "id": 32,
+      "code": "RC-001",
+      "failureTypeId": 79,
+      "title": "Swivel arm / wire guide position not well defined",
+      "description": "The wire-transfer swivel arm or guide feeds the conductor off-centre into the applicator, so strands fall outside the wire barrel.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 77,
+          "stepNo": 1,
+          "instruction": "Reset the swivel arm / wire guide to the reference position on the applicator setup sheet.",
+          "type": "step"
+        },
+        {
+          "id": 78,
+          "stepNo": 2,
+          "instruction": "Run three test crimps and cross-section one to confirm all strands are enclosed.",
+          "type": "step"
+        },
+        {
+          "id": 79,
+          "stepNo": 3,
+          "instruction": "Confirm no loose strands are visible outside the wire barrel under magnification.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 41,
+          "kind": "OK",
+          "filePath": "/uploads/seed-7d9bf681-5827-45bc-a315-8ab57529a22d.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 42,
+          "kind": "NG",
+          "filePath": "/uploads/seed-110abf8d-a3bd-44b9-8261-91e0a8149f28.webp",
+          "caption": "Strands out of the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.255Z",
+      "updatedAt": "2026-08-13T14:59:28.255Z"
+    },
+    {
+      "id": 33,
+      "code": "RC-002",
+      "failureTypeId": 79,
+      "title": "Conductor brush splays after stripping (birdcage)",
+      "description": "Strands splay open (birdcage) after stripping and spread beyond the barrel during insertion.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 80,
+          "stepNo": 1,
+          "instruction": "Reduce the stripping blade opening or add a strand-align / straightener device.",
+          "type": "step"
+        },
+        {
+          "id": 81,
+          "stepNo": 2,
+          "instruction": "Enable wire-end detection and re-run the transfer.",
+          "type": "step"
+        },
+        {
+          "id": 82,
+          "stepNo": 3,
+          "instruction": "Verify strands stay bundled at the moment of insertion.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 43,
+          "kind": "OK",
+          "filePath": "/uploads/seed-2d77c210-5a17-4582-9ef7-8e1cf66600ac.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 44,
+          "kind": "NG",
+          "filePath": "/uploads/seed-3cf1abb1-231b-4bf8-a2f0-5866088618f6.webp",
+          "caption": "Strands out of the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.267Z",
+      "updatedAt": "2026-08-13T14:59:28.267Z"
+    },
+    {
+      "id": 34,
+      "code": "RC-003",
+      "failureTypeId": 79,
+      "title": "Terminal not centred in the applicator",
+      "description": "The terminal is off-centre on the anvil, shifting the barrel away from the conductor.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 83,
+          "stepNo": 1,
+          "instruction": "Centre the terminal track and anvil to the applicator centreline.",
+          "type": "step"
+        },
+        {
+          "id": 84,
+          "stepNo": 2,
+          "instruction": "Perform a test crimp and inspect strand capture.",
+          "type": "step"
+        },
+        {
+          "id": 85,
+          "stepNo": 3,
+          "instruction": "Check terminal centring on the anvil under magnification.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 45,
+          "kind": "OK",
+          "filePath": "/uploads/seed-f871e590-76ae-4b2c-a83f-62679adf97eb.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 46,
+          "kind": "NG",
+          "filePath": "/uploads/seed-414610a8-83d6-4c78-8e9c-cbc3241def05.webp",
+          "caption": "Strands out of the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.278Z",
+      "updatedAt": "2026-08-13T14:59:28.278Z"
+    },
+    {
+      "id": 35,
+      "code": "RC-004",
+      "failureTypeId": 79,
+      "title": "Strip length too short for the wire barrel",
+      "description": "The stripped conductor is shorter than the wire barrel, so the last strands are not gripped.",
+      "rank": 4,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 86,
+          "stepNo": 1,
+          "instruction": "Increase strip length to match the barrel per the crimp specification.",
+          "type": "step"
+        },
+        {
+          "id": 87,
+          "stepNo": 2,
+          "instruction": "Re-measure conductor brush and barrel coverage.",
+          "type": "step"
+        },
+        {
+          "id": 88,
+          "stepNo": 3,
+          "instruction": "Confirm the conductor fills the full length of the wire barrel.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 47,
+          "kind": "OK",
+          "filePath": "/uploads/seed-60c08aba-f00e-46ee-9e58-eeb83a24c63e.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 48,
+          "kind": "NG",
+          "filePath": "/uploads/seed-e7e54d45-f97b-4254-9bb9-35b0d14b1de8.webp",
+          "caption": "Strands out of the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.288Z",
+      "updatedAt": "2026-08-13T14:59:28.288Z"
+    },
+    {
+      "id": 36,
+      "code": "RC-001",
+      "failureTypeId": 80,
+      "title": "Strip length too long",
+      "description": "Excess bared conductor reaches into the insulation crimp zone, leaving strands on top of the crimp.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 89,
+          "stepNo": 1,
+          "instruction": "Reduce strip length to the crimp specification.",
+          "type": "step"
+        },
+        {
+          "id": 90,
+          "stepNo": 2,
+          "instruction": "Verify the brush transition between conductor and insulation crimp.",
+          "type": "step"
+        },
+        {
+          "id": 91,
+          "stepNo": 3,
+          "instruction": "Confirm no strands lie over the insulation barrel.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 49,
+          "kind": "OK",
+          "filePath": "/uploads/seed-508c5112-5ac3-4585-970b-4cc319bf2497.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 50,
+          "kind": "NG",
+          "filePath": "/uploads/seed-f9071b23-e281-4c08-9d9d-b000429f9b7b.webp",
+          "caption": "Strands on the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.325Z",
+      "updatedAt": "2026-08-13T14:59:28.325Z"
+    },
+    {
+      "id": 37,
+      "code": "RC-002",
+      "failureTypeId": 80,
+      "title": "Stray strands from damaged stripping blades",
+      "description": "Worn stripping blades shear individual strands that then lie on the crimp.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 92,
+          "stepNo": 1,
+          "instruction": "Inspect and replace the stripping blades.",
+          "type": "step"
+        },
+        {
+          "id": 93,
+          "stepNo": 2,
+          "instruction": "Clean the strip station and re-run.",
+          "type": "step"
+        },
+        {
+          "id": 94,
+          "stepNo": 3,
+          "instruction": "Verify the strand count is complete and no stray strands remain.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 51,
+          "kind": "OK",
+          "filePath": "/uploads/seed-2760d064-9d0c-46ea-a58a-a382d193e84a.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 52,
+          "kind": "NG",
+          "filePath": "/uploads/seed-6ab568e4-d236-413a-a54c-23bcd1b0c721.webp",
+          "caption": "Strands on the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.333Z",
+      "updatedAt": "2026-08-13T14:59:28.333Z"
+    },
+    {
+      "id": 38,
+      "code": "RC-003",
+      "failureTypeId": 80,
+      "title": "Poor wire transfer alignment",
+      "description": "The conductor is presented off-axis, so stray strands fold onto the crimp.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 95,
+          "stepNo": 1,
+          "instruction": "Re-align the gripper / transfer to the applicator.",
+          "type": "step"
+        },
+        {
+          "id": 96,
+          "stepNo": 2,
+          "instruction": "Test-crimp and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 97,
+          "stepNo": 3,
+          "instruction": "Check the conductor sits central before crimping.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 53,
+          "kind": "OK",
+          "filePath": "/uploads/seed-80cd8e55-fe11-4f44-a112-3285cc88a80e.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 54,
+          "kind": "NG",
+          "filePath": "/uploads/seed-0ed33a30-a534-4a56-9cea-a303032bc029.webp",
+          "caption": "Strands on the crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.344Z",
+      "updatedAt": "2026-08-13T14:59:28.344Z"
+    },
+    {
+      "id": 39,
+      "code": "RC-001",
+      "failureTypeId": 81,
+      "title": "Applicator wear / beyond maintenance interval",
+      "description": "A worn applicator produces progressively shallow or inconsistent crimp heights across a run.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 98,
+          "stepNo": 1,
+          "instruction": "Replace or service the applicator crimp tooling per the maintenance schedule.",
+          "type": "step"
+        },
+        {
+          "id": 99,
+          "stepNo": 2,
+          "instruction": "Recalibrate crimp height to the spec sheet and log the reading.",
+          "type": "step"
+        },
+        {
+          "id": 100,
+          "stepNo": 3,
+          "instruction": "Measure crimp height on 5 pieces and confirm all are within tolerance.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 55,
+          "kind": "OK",
+          "filePath": "/uploads/seed-e8701c5c-808e-4f59-bd4b-08eda6653eff.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 56,
+          "kind": "NG",
+          "filePath": "/uploads/seed-1a9d21bd-ce9c-4198-b203-8042481493d7.webp",
+          "caption": "Crimp height out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.570Z",
+      "updatedAt": "2026-08-13T14:59:28.570Z"
+    },
+    {
+      "id": 40,
+      "code": "RC-002",
+      "failureTypeId": 81,
+      "title": "Wrong shut height / press setup",
+      "description": "The press shut height is set incorrectly for the terminal, giving over- or under-compression.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 101,
+          "stepNo": 1,
+          "instruction": "Set the press shut height to the applicator reference value.",
+          "type": "step"
+        },
+        {
+          "id": 102,
+          "stepNo": 2,
+          "instruction": "Run a crimp-height and pull-force check.",
+          "type": "step"
+        },
+        {
+          "id": 103,
+          "stepNo": 3,
+          "instruction": "Confirm crimp height and pull force meet the spec.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 57,
+          "kind": "OK",
+          "filePath": "/uploads/seed-26a5d4b3-d523-4b45-9d19-7140722cc245.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 58,
+          "kind": "NG",
+          "filePath": "/uploads/seed-170c748b-30a9-47a8-9787-015398db151c.webp",
+          "caption": "Crimp height out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.579Z",
+      "updatedAt": "2026-08-13T14:59:28.579Z"
+    },
+    {
+      "id": 41,
+      "code": "RC-003",
+      "failureTypeId": 81,
+      "title": "Wrong terminal or wire size for the applicator",
+      "description": "A terminal/wire combination outside the applicator range yields out-of-spec height.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 104,
+          "stepNo": 1,
+          "instruction": "Verify the terminal part number and wire cross-section against the crimp chart.",
+          "type": "step"
+        },
+        {
+          "id": 105,
+          "stepNo": 2,
+          "instruction": "Load the correct applicator / wire and re-test.",
+          "type": "step"
+        },
+        {
+          "id": 106,
+          "stepNo": 3,
+          "instruction": "Confirm terminal PN and wire CSA match the crimp chart.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 59,
+          "kind": "OK",
+          "filePath": "/uploads/seed-912811b5-e63b-4fb9-8fc2-b760e4ce9cdb.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 60,
+          "kind": "NG",
+          "filePath": "/uploads/seed-35009354-f338-413c-a496-a185e9e2dd17.webp",
+          "caption": "Crimp height out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.590Z",
+      "updatedAt": "2026-08-13T14:59:28.590Z"
+    },
+    {
+      "id": 42,
+      "code": "RC-004",
+      "failureTypeId": 81,
+      "title": "Crimp-force monitor not taught or disabled",
+      "description": "The CFM reference (ACO / CFA) is not taught, so height drift is not caught.",
+      "rank": 4,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 107,
+          "stepNo": 1,
+          "instruction": "Re-teach the crimp-force reference on verified good samples.",
+          "type": "step"
+        },
+        {
+          "id": 108,
+          "stepNo": 2,
+          "instruction": "Enable automatic reject for out-of-band curves.",
+          "type": "step"
+        },
+        {
+          "id": 109,
+          "stepNo": 3,
+          "instruction": "Confirm the crimp-force monitor is active and the envelope is taught.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 61,
+          "kind": "OK",
+          "filePath": "/uploads/seed-628b29f7-9cc6-46cc-b639-8ef307775a3a.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 62,
+          "kind": "NG",
+          "filePath": "/uploads/seed-8434da31-deaf-4232-9bd7-e00483a2bede.webp",
+          "caption": "Crimp height out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.605Z",
+      "updatedAt": "2026-08-13T14:59:28.605Z"
+    },
+    {
+      "id": 43,
+      "code": "RC-001",
+      "failureTypeId": 82,
+      "title": "Worn or damaged crimp tooling",
+      "description": "Worn anvil / crimper edges fail to form a proper bellmouth.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 110,
+          "stepNo": 1,
+          "instruction": "Inspect the anvil and crimper radius; replace if worn.",
+          "type": "step"
+        },
+        {
+          "id": 111,
+          "stepNo": 2,
+          "instruction": "Test-crimp and inspect front and rear bellmouth.",
+          "type": "step"
+        },
+        {
+          "id": 112,
+          "stepNo": 3,
+          "instruction": "Confirm a symmetric bellmouth is present at both barrel ends.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 63,
+          "kind": "OK",
+          "filePath": "/uploads/seed-5cc8727f-c521-45d3-a6a2-54176706e3c7.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 64,
+          "kind": "NG",
+          "filePath": "/uploads/seed-3a43f6ec-9c0b-4543-b3d6-c6b3644e9b9d.webp",
+          "caption": "Bellmouth non-conform"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.658Z",
+      "updatedAt": "2026-08-13T14:59:28.658Z"
+    },
+    {
+      "id": 44,
+      "code": "RC-002",
+      "failureTypeId": 82,
+      "title": "Incorrect conductor positioning in the barrel",
+      "description": "The conductor set too far forward or back changes bellmouth formation.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 113,
+          "stepNo": 1,
+          "instruction": "Adjust the wire stop / conductor position in the barrel.",
+          "type": "step"
+        },
+        {
+          "id": 114,
+          "stepNo": 2,
+          "instruction": "Re-crimp and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 115,
+          "stepNo": 3,
+          "instruction": "Confirm brush and bellmouth are within the inspection window.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 65,
+          "kind": "OK",
+          "filePath": "/uploads/seed-8225c0bc-e6b7-4e55-a364-001c2d2ab525.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 66,
+          "kind": "NG",
+          "filePath": "/uploads/seed-291e0728-1f21-40a0-aede-590992d83660.webp",
+          "caption": "Bellmouth non-conform"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.681Z",
+      "updatedAt": "2026-08-13T14:59:28.681Z"
+    },
+    {
+      "id": 45,
+      "code": "RC-003",
+      "failureTypeId": 82,
+      "title": "Crimp height too high (under-compression)",
+      "description": "Under-compression leaves an oversized or irregular bellmouth.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 116,
+          "stepNo": 1,
+          "instruction": "Correct crimp height to spec.",
+          "type": "step"
+        },
+        {
+          "id": 117,
+          "stepNo": 2,
+          "instruction": "Re-inspect the bellmouth form.",
+          "type": "step"
+        },
+        {
+          "id": 118,
+          "stepNo": 3,
+          "instruction": "Confirm bellmouth size is within acceptance criteria.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 67,
+          "kind": "OK",
+          "filePath": "/uploads/seed-d34d6d97-b9a7-458a-add2-599fb9457117.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 68,
+          "kind": "NG",
+          "filePath": "/uploads/seed-f2f63731-032f-4b59-aab2-7b751d23b684.webp",
+          "caption": "Bellmouth non-conform"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.712Z",
+      "updatedAt": "2026-08-13T14:59:28.712Z"
+    },
+    {
+      "id": 46,
+      "code": "RC-001",
+      "failureTypeId": 83,
+      "title": "Strip length too short",
+      "description": "Too little conductor is exposed, so no brush is visible beyond the barrel.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 119,
+          "stepNo": 1,
+          "instruction": "Increase strip length so the brush is visible beyond the wire barrel.",
+          "type": "step"
+        },
+        {
+          "id": 120,
+          "stepNo": 2,
+          "instruction": "Re-measure brush length.",
+          "type": "step"
+        },
+        {
+          "id": 121,
+          "stepNo": 3,
+          "instruction": "Confirm the brush is visible and within min/max.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 69,
+          "kind": "OK",
+          "filePath": "/uploads/seed-42f1d768-9794-4086-b2f5-30488f5f283e.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 70,
+          "kind": "NG",
+          "filePath": "/uploads/seed-4607a478-ce0e-4634-9c49-9e6f722f2e3a.webp",
+          "caption": "Insufficient conductor brush"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.764Z",
+      "updatedAt": "2026-08-13T14:59:28.764Z"
+    },
+    {
+      "id": 47,
+      "code": "RC-002",
+      "failureTypeId": 83,
+      "title": "Wire set too far into the barrel",
+      "description": "The conductor is inserted too deep, hiding the brush inside the barrel.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 122,
+          "stepNo": 1,
+          "instruction": "Adjust the wire stop so the conductor extends past the barrel.",
+          "type": "step"
+        },
+        {
+          "id": 123,
+          "stepNo": 2,
+          "instruction": "Test-crimp and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 124,
+          "stepNo": 3,
+          "instruction": "Confirm the conductor extends beyond the wire barrel.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 71,
+          "kind": "OK",
+          "filePath": "/uploads/seed-8692ebe3-ad60-4ef9-9e75-480c11cce49c.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 72,
+          "kind": "NG",
+          "filePath": "/uploads/seed-e2c77531-8374-4551-b785-08eea92d763c.webp",
+          "caption": "Insufficient conductor brush"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.776Z",
+      "updatedAt": "2026-08-13T14:59:28.776Z"
+    },
+    {
+      "id": 48,
+      "code": "RC-001",
+      "failureTypeId": 84,
+      "title": "Strip length too short",
+      "description": "Insulation reaches into the conductor barrel because too little was stripped.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 125,
+          "stepNo": 1,
+          "instruction": "Increase strip length to clear insulation from the wire barrel.",
+          "type": "step"
+        },
+        {
+          "id": 126,
+          "stepNo": 2,
+          "instruction": "Re-crimp and cross-section to verify.",
+          "type": "step"
+        },
+        {
+          "id": 127,
+          "stepNo": 3,
+          "instruction": "Confirm no insulation inside the conductor barrel.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 73,
+          "kind": "OK",
+          "filePath": "/uploads/seed-ebdd15a6-0b71-414d-8d4c-34c0c7b78bee.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 74,
+          "kind": "NG",
+          "filePath": "/uploads/seed-520699a6-38a0-412a-ac18-638d1ed78d02.webp",
+          "caption": "Insulation in the conductor crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.819Z",
+      "updatedAt": "2026-08-13T14:59:28.819Z"
+    },
+    {
+      "id": 49,
+      "code": "RC-002",
+      "failureTypeId": 84,
+      "title": "Insulation not fully removed at strip",
+      "description": "A residual insulation slug is carried into the crimp.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 128,
+          "stepNo": 1,
+          "instruction": "Correct blade depth / position to fully remove the insulation slug.",
+          "type": "step"
+        },
+        {
+          "id": 129,
+          "stepNo": 2,
+          "instruction": "Verify clean conductor at the strip station.",
+          "type": "step"
+        },
+        {
+          "id": 130,
+          "stepNo": 3,
+          "instruction": "Confirm the conductor is clean before crimp.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 75,
+          "kind": "OK",
+          "filePath": "/uploads/seed-7d05b860-6582-446b-a40b-8bdc9ba54ced.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 76,
+          "kind": "NG",
+          "filePath": "/uploads/seed-c81e91e3-524b-4e4a-8f8a-763649dc51b2.webp",
+          "caption": "Insulation in the conductor crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.828Z",
+      "updatedAt": "2026-08-13T14:59:28.828Z"
+    },
+    {
+      "id": 50,
+      "code": "RC-003",
+      "failureTypeId": 84,
+      "title": "Wire positioned too far back",
+      "description": "The wire stop leaves insulation inside the conductor barrel.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 131,
+          "stepNo": 1,
+          "instruction": "Adjust the wire stop / transfer so insulation stays in the insulation barrel.",
+          "type": "step"
+        },
+        {
+          "id": 132,
+          "stepNo": 2,
+          "instruction": "Re-test.",
+          "type": "step"
+        },
+        {
+          "id": 133,
+          "stepNo": 3,
+          "instruction": "Confirm insulation sits only in the insulation crimp.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 77,
+          "kind": "OK",
+          "filePath": "/uploads/seed-a0c957d3-591c-4d7d-ad8a-232743ee64e3.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 78,
+          "kind": "NG",
+          "filePath": "/uploads/seed-6b17b550-3f71-4134-9a56-4356cfad46eb.webp",
+          "caption": "Insulation in the conductor crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.843Z",
+      "updatedAt": "2026-08-13T14:59:28.843Z"
+    },
+    {
+      "id": 51,
+      "code": "RC-001",
+      "failureTypeId": 85,
+      "title": "Wrong insulation crimp height / tooling",
+      "description": "The insulation crimp height does not match the wire outer diameter.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 134,
+          "stepNo": 1,
+          "instruction": "Set the insulation crimp height for the wire OD per spec.",
+          "type": "step"
+        },
+        {
+          "id": 135,
+          "stepNo": 2,
+          "instruction": "Verify grip with a wiggle / pull check.",
+          "type": "step"
+        },
+        {
+          "id": 136,
+          "stepNo": 3,
+          "instruction": "Confirm insulation is held without cutting through.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 79,
+          "kind": "OK",
+          "filePath": "/uploads/seed-5ebc0dfe-dc19-4b5c-8d5d-7962f5d3d76b.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 80,
+          "kind": "NG",
+          "filePath": "/uploads/seed-3d939a2a-5435-4f43-b20b-b0149b421f91.webp",
+          "caption": "Insulation crimp grip out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.883Z",
+      "updatedAt": "2026-08-13T14:59:28.883Z"
+    },
+    {
+      "id": 52,
+      "code": "RC-002",
+      "failureTypeId": 85,
+      "title": "Wire outer diameter out of range",
+      "description": "The wire OD is outside the applicator window, so grip is loose or over-tight.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 137,
+          "stepNo": 1,
+          "instruction": "Verify wire OD / insulation against the applicator range.",
+          "type": "step"
+        },
+        {
+          "id": 138,
+          "stepNo": 2,
+          "instruction": "Select the correct applicator or insulation crimp setting.",
+          "type": "step"
+        },
+        {
+          "id": 139,
+          "stepNo": 3,
+          "instruction": "Confirm wire OD within the applicator window.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 81,
+          "kind": "OK",
+          "filePath": "/uploads/seed-6bc809fc-9818-4c44-acae-e9082d227d17.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 82,
+          "kind": "NG",
+          "filePath": "/uploads/seed-c84c8677-ab16-437c-a4bc-ab9341c3d47c.webp",
+          "caption": "Insulation crimp grip out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.893Z",
+      "updatedAt": "2026-08-13T14:59:28.893Z"
+    },
+    {
+      "id": 53,
+      "code": "RC-001",
+      "failureTypeId": 86,
+      "title": "Terminal feed / carrier not correctly aligned",
+      "description": "Misaligned feed or cut-off distorts the terminal during crimp.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 140,
+          "stepNo": 1,
+          "instruction": "Align the terminal feed and cut-off to the applicator.",
+          "type": "step"
+        },
+        {
+          "id": 141,
+          "stepNo": 2,
+          "instruction": "Inspect the box / contact section after crimp.",
+          "type": "step"
+        },
+        {
+          "id": 142,
+          "stepNo": 3,
+          "instruction": "Confirm the contact section is straight and undamaged.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 83,
+          "kind": "OK",
+          "filePath": "/uploads/seed-9a523e05-12b4-4309-b231-ac888cf269f7.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 84,
+          "kind": "NG",
+          "filePath": "/uploads/seed-679cce4d-fd82-4303-bbf5-f8ab276bd473.webp",
+          "caption": "Terminal deformation"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.929Z",
+      "updatedAt": "2026-08-13T14:59:28.929Z"
+    },
+    {
+      "id": 54,
+      "code": "RC-002",
+      "failureTypeId": 86,
+      "title": "Excessive crimp force / wrong shut height",
+      "description": "Over-compression deforms the contact area.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 143,
+          "stepNo": 1,
+          "instruction": "Correct shut height and crimp force to spec.",
+          "type": "step"
+        },
+        {
+          "id": 144,
+          "stepNo": 2,
+          "instruction": "Re-crimp and inspect for deformation.",
+          "type": "step"
+        },
+        {
+          "id": 145,
+          "stepNo": 3,
+          "instruction": "Confirm no deformation of the contact area.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 85,
+          "kind": "OK",
+          "filePath": "/uploads/seed-feb6c4c7-1208-48f4-9e29-5ac9660bf265.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 86,
+          "kind": "NG",
+          "filePath": "/uploads/seed-fc5cdfc8-5f15-4471-9dd2-c1b932de9c5b.webp",
+          "caption": "Terminal deformation"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.939Z",
+      "updatedAt": "2026-08-13T14:59:28.939Z"
+    },
+    {
+      "id": 55,
+      "code": "RC-003",
+      "failureTypeId": 86,
+      "title": "Cut-off tab burr pushing the terminal",
+      "description": "A burr on the carrier cut-off tab pushes and bends the terminal.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 146,
+          "stepNo": 1,
+          "instruction": "Adjust the cut-off blade to remove the burr and correct tab length.",
+          "type": "step"
+        },
+        {
+          "id": 147,
+          "stepNo": 2,
+          "instruction": "Inspect the terminal after cut-off.",
+          "type": "step"
+        },
+        {
+          "id": 148,
+          "stepNo": 3,
+          "instruction": "Confirm cut-off tab length and no burr.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 87,
+          "kind": "OK",
+          "filePath": "/uploads/seed-06791add-e115-4ff9-a9a2-f8434b9ab44b.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 88,
+          "kind": "NG",
+          "filePath": "/uploads/seed-5fc3c9dc-db20-4b00-b3a0-e438b3101550.webp",
+          "caption": "Terminal deformation"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.949Z",
+      "updatedAt": "2026-08-13T14:59:28.949Z"
+    },
+    {
+      "id": 56,
+      "code": "RC-001",
+      "failureTypeId": 87,
+      "title": "Missing strands / short brush",
+      "description": "Fewer strands or a short brush lower the crimp force below the envelope.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 149,
+          "stepNo": 1,
+          "instruction": "Check upstream stripping for cut or missing strands.",
+          "type": "step"
+        },
+        {
+          "id": 150,
+          "stepNo": 2,
+          "instruction": "Correct the strip and re-teach if needed.",
+          "type": "step"
+        },
+        {
+          "id": 151,
+          "stepNo": 3,
+          "instruction": "Confirm the full strand count enters the barrel.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 89,
+          "kind": "OK",
+          "filePath": "/uploads/seed-964f6e70-8c89-43d0-a5d0-27cf8851ffe6.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 90,
+          "kind": "NG",
+          "filePath": "/uploads/seed-968655bc-6516-4792-ba1f-ce49359dd80e.webp",
+          "caption": "Crimp force curve out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.990Z",
+      "updatedAt": "2026-08-13T14:59:28.990Z"
+    },
+    {
+      "id": 57,
+      "code": "RC-002",
+      "failureTypeId": 87,
+      "title": "Terminal or wire material variation",
+      "description": "A new terminal or wire lot shifts the force curve out of the taught band.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 152,
+          "stepNo": 1,
+          "instruction": "Verify the terminal lot and wire; re-teach the CFM reference on the new lot.",
+          "type": "step"
+        },
+        {
+          "id": 153,
+          "stepNo": 2,
+          "instruction": "Confirm the curve returns within envelope.",
+          "type": "step"
+        },
+        {
+          "id": 154,
+          "stepNo": 3,
+          "instruction": "Confirm the CFM curve is inside the taught band.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 91,
+          "kind": "OK",
+          "filePath": "/uploads/seed-dd2f4076-5f22-4838-b715-4ee5b4a891fc.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 92,
+          "kind": "NG",
+          "filePath": "/uploads/seed-ec2e8c30-ce2e-4c2d-9ba4-031cc02483ac.webp",
+          "caption": "Crimp force curve out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:28.999Z",
+      "updatedAt": "2026-08-13T14:59:28.999Z"
+    },
+    {
+      "id": 58,
+      "code": "RC-003",
+      "failureTypeId": 87,
+      "title": "Reference envelope taught on bad samples",
+      "description": "The CFM was taught on defective crimps, so the envelope is invalid.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 155,
+          "stepNo": 1,
+          "instruction": "Re-teach the CFM using verified good crimps (cross-sectioned).",
+          "type": "step"
+        },
+        {
+          "id": 156,
+          "stepNo": 2,
+          "instruction": "Validate with known-good and known-bad pieces.",
+          "type": "step"
+        },
+        {
+          "id": 157,
+          "stepNo": 3,
+          "instruction": "Confirm good pieces pass and defects are rejected.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 93,
+          "kind": "OK",
+          "filePath": "/uploads/seed-b8437de2-262c-44b1-a33f-e7c383fec05d.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 94,
+          "kind": "NG",
+          "filePath": "/uploads/seed-125fb871-a5f2-4538-912b-6007a0af71fa.webp",
+          "caption": "Crimp force curve out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.009Z",
+      "updatedAt": "2026-08-13T14:59:29.009Z"
+    },
+    {
+      "id": 59,
+      "code": "RC-001",
+      "failureTypeId": 88,
+      "title": "Seal feeder empty or jammed",
+      "description": "The seal feeder (bowl / tape) is empty or jammed, so no seal is loaded.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 158,
+          "stepNo": 1,
+          "instruction": "Refill or clear the seal feeder and re-home the module.",
+          "type": "step"
+        },
+        {
+          "id": 159,
+          "stepNo": 2,
+          "instruction": "Run a test cycle and confirm seal pick-up.",
+          "type": "step"
+        },
+        {
+          "id": 160,
+          "stepNo": 3,
+          "instruction": "Confirm a seal is present on every wire.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 95,
+          "kind": "OK",
+          "filePath": "/uploads/seed-7aa74741-f334-477e-a7c0-7755ccd7f2f9.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 96,
+          "kind": "NG",
+          "filePath": "/uploads/seed-91882961-2bc4-486a-bace-1897e386d351.webp",
+          "caption": "Missing seal"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.093Z",
+      "updatedAt": "2026-08-13T14:59:29.093Z"
+    },
+    {
+      "id": 60,
+      "code": "RC-002",
+      "failureTypeId": 88,
+      "title": "Seal-presence sensor disabled or misaligned",
+      "description": "The seal detection sensor is off or misaligned, so no-seal parts pass.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 161,
+          "stepNo": 1,
+          "instruction": "Enable and align the seal-presence sensor.",
+          "type": "step"
+        },
+        {
+          "id": 162,
+          "stepNo": 2,
+          "instruction": "Verify it rejects a deliberately no-seal part.",
+          "type": "step"
+        },
+        {
+          "id": 163,
+          "stepNo": 3,
+          "instruction": "Confirm the sensor detects a missing seal.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 97,
+          "kind": "OK",
+          "filePath": "/uploads/seed-caa2f852-f746-48ae-bd5c-13037cd6c57d.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 98,
+          "kind": "NG",
+          "filePath": "/uploads/seed-e3e9c06a-5fb5-4bc7-bb53-5f2ca700b815.webp",
+          "caption": "Missing seal"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.103Z",
+      "updatedAt": "2026-08-13T14:59:29.103Z"
+    },
+    {
+      "id": 61,
+      "code": "RC-001",
+      "failureTypeId": 89,
+      "title": "Worn or sharp seal transfer tooling",
+      "description": "Worn seal-loading fingers or tooling cut the seal body during handling.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 164,
+          "stepNo": 1,
+          "instruction": "Inspect and replace the seal-loading fingers / tooling.",
+          "type": "step"
+        },
+        {
+          "id": 165,
+          "stepNo": 2,
+          "instruction": "Run test pieces and inspect the seal body.",
+          "type": "step"
+        },
+        {
+          "id": 166,
+          "stepNo": 3,
+          "instruction": "Confirm the seal lips are intact and undamaged.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 99,
+          "kind": "OK",
+          "filePath": "/uploads/seed-3256173b-28ee-4c21-ba8b-336ea5dbde05.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 100,
+          "kind": "NG",
+          "filePath": "/uploads/seed-205a381f-7ea1-443c-91b0-e2428c0b6788.webp",
+          "caption": "Seal damaged"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.330Z",
+      "updatedAt": "2026-08-13T14:59:29.330Z"
+    },
+    {
+      "id": 62,
+      "code": "RC-002",
+      "failureTypeId": 89,
+      "title": "Seal crimp height too tight",
+      "description": "An over-tight seal crimp cuts or tears the elastic seal.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 167,
+          "stepNo": 1,
+          "instruction": "Increase the seal crimp height to the spec.",
+          "type": "step"
+        },
+        {
+          "id": 168,
+          "stepNo": 2,
+          "instruction": "Inspect for cuts after crimp.",
+          "type": "step"
+        },
+        {
+          "id": 169,
+          "stepNo": 3,
+          "instruction": "Confirm no cuts or tears on the seal.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 101,
+          "kind": "OK",
+          "filePath": "/uploads/seed-daff9d30-b2dd-46d6-aed2-fb3d716f9649.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 102,
+          "kind": "NG",
+          "filePath": "/uploads/seed-3208d202-490e-4a7a-afbe-88bff14ec9ab.webp",
+          "caption": "Seal damaged"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.342Z",
+      "updatedAt": "2026-08-13T14:59:29.342Z"
+    },
+    {
+      "id": 63,
+      "code": "RC-003",
+      "failureTypeId": 89,
+      "title": "Wire strand pierces the seal during insertion",
+      "description": "A splayed strand punctures the seal bore as the wire is inserted.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 170,
+          "stepNo": 1,
+          "instruction": "Improve conductor alignment / add a lead-in; check for splayed strands.",
+          "type": "step"
+        },
+        {
+          "id": 171,
+          "stepNo": 2,
+          "instruction": "Re-run and inspect the seal bore.",
+          "type": "step"
+        },
+        {
+          "id": 172,
+          "stepNo": 3,
+          "instruction": "Confirm the seal bore is not pierced.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 103,
+          "kind": "OK",
+          "filePath": "/uploads/seed-2c9b47b2-161a-4efc-bcc7-d4d24a17678f.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 104,
+          "kind": "NG",
+          "filePath": "/uploads/seed-4d3cd315-d7ad-4cf0-a7d0-fc3e9998997d.webp",
+          "caption": "Seal damaged"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.350Z",
+      "updatedAt": "2026-08-13T14:59:29.350Z"
+    },
+    {
+      "id": 64,
+      "code": "RC-001",
+      "failureTypeId": 90,
+      "title": "Seal stop / positioning incorrectly set",
+      "description": "The seal position stop is set to the wrong dimension.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 173,
+          "stepNo": 1,
+          "instruction": "Set the seal position stop to the spec dimension.",
+          "type": "step"
+        },
+        {
+          "id": 174,
+          "stepNo": 2,
+          "instruction": "Measure seal-to-terminal distance on test pieces.",
+          "type": "step"
+        },
+        {
+          "id": 175,
+          "stepNo": 3,
+          "instruction": "Confirm the seal position is within tolerance.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 105,
+          "kind": "OK",
+          "filePath": "/uploads/seed-bda7f5b5-baaf-4563-bd19-8010546546a0.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 106,
+          "kind": "NG",
+          "filePath": "/uploads/seed-e752d9b2-fa8f-43f1-be36-ca0f8cb059ca.webp",
+          "caption": "Seal position out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.393Z",
+      "updatedAt": "2026-08-13T14:59:29.393Z"
+    },
+    {
+      "id": 65,
+      "code": "RC-002",
+      "failureTypeId": 90,
+      "title": "Strip / cut length variation upstream",
+      "description": "Inconsistent cut or strip length shifts the seal position.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 176,
+          "stepNo": 1,
+          "instruction": "Verify cut and strip lengths feeding the seal module.",
+          "type": "step"
+        },
+        {
+          "id": 177,
+          "stepNo": 2,
+          "instruction": "Correct and re-measure the seal position.",
+          "type": "step"
+        },
+        {
+          "id": 178,
+          "stepNo": 3,
+          "instruction": "Confirm consistent seal position across samples.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 107,
+          "kind": "OK",
+          "filePath": "/uploads/seed-a5b01d2c-06fa-4588-9f37-00f7cea931ef.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 108,
+          "kind": "NG",
+          "filePath": "/uploads/seed-d07f054a-2891-45e2-8439-b840b6debd09.webp",
+          "caption": "Seal position out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.401Z",
+      "updatedAt": "2026-08-13T14:59:29.401Z"
+    },
+    {
+      "id": 66,
+      "code": "RC-001",
+      "failureTypeId": 91,
+      "title": "Seal crimp height too low (over-crimped)",
+      "description": "Excessive compression permanently deforms the seal.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 179,
+          "stepNo": 1,
+          "instruction": "Raise the seal crimp height to the specified value.",
+          "type": "step"
+        },
+        {
+          "id": 180,
+          "stepNo": 2,
+          "instruction": "Re-crimp and check seal geometry and pull force.",
+          "type": "step"
+        },
+        {
+          "id": 181,
+          "stepNo": 3,
+          "instruction": "Confirm the seal returns to shape and meets pull force.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 109,
+          "kind": "OK",
+          "filePath": "/uploads/seed-5bdce77f-b3f3-40aa-8f57-51b1d0d3d0db.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 110,
+          "kind": "NG",
+          "filePath": "/uploads/seed-c823a9fa-0635-4901-9575-c182edd12b90.webp",
+          "caption": "Seal deformed by crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.445Z",
+      "updatedAt": "2026-08-13T14:59:29.445Z"
+    },
+    {
+      "id": 67,
+      "code": "RC-002",
+      "failureTypeId": 91,
+      "title": "Wrong seal size for the wire",
+      "description": "A seal too small for the wire is crushed during crimp.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 182,
+          "stepNo": 1,
+          "instruction": "Verify the seal PN / size against the wire OD.",
+          "type": "step"
+        },
+        {
+          "id": 183,
+          "stepNo": 2,
+          "instruction": "Load the correct seal and re-test.",
+          "type": "step"
+        },
+        {
+          "id": 184,
+          "stepNo": 3,
+          "instruction": "Confirm the seal PN matches the wire.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 111,
+          "kind": "OK",
+          "filePath": "/uploads/seed-179c04de-4dba-4e94-801c-12c737c0168f.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 112,
+          "kind": "NG",
+          "filePath": "/uploads/seed-c6c560d6-e916-421b-9125-1b9ca947fe44.webp",
+          "caption": "Seal deformed by crimp"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.456Z",
+      "updatedAt": "2026-08-13T14:59:29.456Z"
+    },
+    {
+      "id": 68,
+      "code": "RC-001",
+      "failureTypeId": 92,
+      "title": "Wrong seal loaded in the feeder",
+      "description": "The feeder was loaded with a seal that does not match the work order.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 185,
+          "stepNo": 1,
+          "instruction": "Verify the seal part number against the work order.",
+          "type": "step"
+        },
+        {
+          "id": 186,
+          "stepNo": 2,
+          "instruction": "Reload the correct seal and purge wrong parts.",
+          "type": "step"
+        },
+        {
+          "id": 187,
+          "stepNo": 3,
+          "instruction": "Confirm the seal PN and colour match the spec.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 113,
+          "kind": "OK",
+          "filePath": "/uploads/seed-ad1ba8de-0884-4ac3-a931-027e992b85e8.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 114,
+          "kind": "NG",
+          "filePath": "/uploads/seed-470c62df-0236-4808-a389-fd6e6ce743aa.webp",
+          "caption": "Wrong seal type or size"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.494Z",
+      "updatedAt": "2026-08-13T14:59:29.494Z"
+    },
+    {
+      "id": 69,
+      "code": "RC-001",
+      "failureTypeId": 93,
+      "title": "Insufficient seal insertion stroke",
+      "description": "The insertion stroke / force does not fully seat the seal.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 188,
+          "stepNo": 1,
+          "instruction": "Adjust the seal insertion stroke / force to fully seat the seal.",
+          "type": "step"
+        },
+        {
+          "id": 189,
+          "stepNo": 2,
+          "instruction": "Verify seal seating on test pieces.",
+          "type": "step"
+        },
+        {
+          "id": 190,
+          "stepNo": 3,
+          "instruction": "Confirm the seal is fully seated against the reference.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 115,
+          "kind": "OK",
+          "filePath": "/uploads/seed-d301d3f2-6b77-4195-8aad-883fbe743495.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 116,
+          "kind": "NG",
+          "filePath": "/uploads/seed-cae52d5d-f8a1-4d92-941a-367c37d6f857.webp",
+          "caption": "Seal not fully seated on the wire"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.628Z",
+      "updatedAt": "2026-08-13T14:59:29.628Z"
+    },
+    {
+      "id": 70,
+      "code": "RC-002",
+      "failureTypeId": 93,
+      "title": "Wire OD too large / seal bore too small",
+      "description": "Incompatible wire OD and seal bore prevent full seating.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 191,
+          "stepNo": 1,
+          "instruction": "Verify wire OD and seal bore compatibility.",
+          "type": "step"
+        },
+        {
+          "id": 192,
+          "stepNo": 2,
+          "instruction": "Select the correct seal.",
+          "type": "step"
+        },
+        {
+          "id": 193,
+          "stepNo": 3,
+          "instruction": "Confirm the seal slides on and seats without a gap.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 117,
+          "kind": "OK",
+          "filePath": "/uploads/seed-7ce799e2-82af-4aec-9feb-573827f214db.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 118,
+          "kind": "NG",
+          "filePath": "/uploads/seed-ba9696dd-4d75-4abc-86da-7c80b16247a6.webp",
+          "caption": "Seal not fully seated on the wire"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.638Z",
+      "updatedAt": "2026-08-13T14:59:29.638Z"
+    },
+    {
+      "id": 71,
+      "code": "RC-001",
+      "failureTypeId": 94,
+      "title": "Feeder singulation fault",
+      "description": "The seal escapement / singulation picks two seals or presents one skewed.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 194,
+          "stepNo": 1,
+          "instruction": "Service the seal singulation / escapement in the feeder.",
+          "type": "step"
+        },
+        {
+          "id": 195,
+          "stepNo": 2,
+          "instruction": "Run test cycles to confirm a single-seal pick.",
+          "type": "step"
+        },
+        {
+          "id": 196,
+          "stepNo": 3,
+          "instruction": "Confirm exactly one seal per wire, square to the axis.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 119,
+          "kind": "OK",
+          "filePath": "/uploads/seed-9feffa61-b246-48d4-825c-7dd048ff3fe3.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 120,
+          "kind": "NG",
+          "filePath": "/uploads/seed-9ad5020c-261b-4c6f-ae37-ed901a309226.webp",
+          "caption": "Double seal or seal skew"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.678Z",
+      "updatedAt": "2026-08-13T14:59:29.678Z"
+    },
+    {
+      "id": 72,
+      "code": "RC-001",
+      "failureTypeId": 95,
+      "title": "Stripping blade depth set too deep",
+      "description": "The blade cuts into the conductor because the depth of cut is set too deep.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 197,
+          "stepNo": 1,
+          "instruction": "Reduce the blade cutting depth to just clear the insulation.",
+          "type": "step"
+        },
+        {
+          "id": 198,
+          "stepNo": 2,
+          "instruction": "Cross-check with a strand-contact detection (e.g. SmartDetect) run.",
+          "type": "step"
+        },
+        {
+          "id": 199,
+          "stepNo": 3,
+          "instruction": "Confirm no nicked or cut strands under magnification.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 121,
+          "kind": "OK",
+          "filePath": "/uploads/seed-37dc1231-be90-439f-9408-39f8d9cebc23.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 122,
+          "kind": "NG",
+          "filePath": "/uploads/seed-b76b92b2-e77b-4846-832b-fc58932ff95e.webp",
+          "caption": "Strands cut or nicked"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.931Z",
+      "updatedAt": "2026-08-13T14:59:29.931Z"
+    },
+    {
+      "id": 73,
+      "code": "RC-002",
+      "failureTypeId": 95,
+      "title": "Worn or damaged stripping blades",
+      "description": "Dull or chipped blades tear or nick strands instead of cleanly cutting insulation.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 200,
+          "stepNo": 1,
+          "instruction": "Replace the stripping blades and clean the station.",
+          "type": "step"
+        },
+        {
+          "id": 201,
+          "stepNo": 2,
+          "instruction": "Run test pieces and inspect strands.",
+          "type": "step"
+        },
+        {
+          "id": 202,
+          "stepNo": 3,
+          "instruction": "Confirm the full strand count with no damage.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 123,
+          "kind": "OK",
+          "filePath": "/uploads/seed-a7e1877a-9efb-46e6-a1c3-78ffdf81a177.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 124,
+          "kind": "NG",
+          "filePath": "/uploads/seed-a4016cd7-1bc5-48fb-9f55-936352ae38c3.webp",
+          "caption": "Strands cut or nicked"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.941Z",
+      "updatedAt": "2026-08-13T14:59:29.941Z"
+    },
+    {
+      "id": 74,
+      "code": "RC-003",
+      "failureTypeId": 95,
+      "title": "Blade not centred on the wire (off-axis)",
+      "description": "A wire off the blade axis is nicked on one side.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 203,
+          "stepNo": 1,
+          "instruction": "Centre the blades to the wire axis / correct the V-blade alignment.",
+          "type": "step"
+        },
+        {
+          "id": 204,
+          "stepNo": 2,
+          "instruction": "Re-strip and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 205,
+          "stepNo": 3,
+          "instruction": "Confirm a concentric strip with no one-sided nicking.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 125,
+          "kind": "OK",
+          "filePath": "/uploads/seed-6cbabf35-544a-4673-870a-be43f43eedda.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 126,
+          "kind": "NG",
+          "filePath": "/uploads/seed-14964f40-cfcb-40ca-aa31-8ccfeb4a9ff4.webp",
+          "caption": "Strands cut or nicked"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.949Z",
+      "updatedAt": "2026-08-13T14:59:29.949Z"
+    },
+    {
+      "id": 75,
+      "code": "RC-004",
+      "failureTypeId": 95,
+      "title": "Wrong blade type for the conductor",
+      "description": "A blade profile unsuited to fine-strand or thin-wall wire damages strands.",
+      "rank": 4,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 206,
+          "stepNo": 1,
+          "instruction": "Fit the correct blade geometry for the wire (e.g. fine-strand or thin-wall).",
+          "type": "step"
+        },
+        {
+          "id": 207,
+          "stepNo": 2,
+          "instruction": "Validate on samples.",
+          "type": "step"
+        },
+        {
+          "id": 208,
+          "stepNo": 3,
+          "instruction": "Confirm the blade type matches the wire spec.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 127,
+          "kind": "OK",
+          "filePath": "/uploads/seed-06e6fd60-d63b-4527-b85b-b2b24155fe42.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 128,
+          "kind": "NG",
+          "filePath": "/uploads/seed-86786689-7677-4f0a-81b3-eb89966741dd.webp",
+          "caption": "Strands cut or nicked"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.958Z",
+      "updatedAt": "2026-08-13T14:59:29.958Z"
+    },
+    {
+      "id": 76,
+      "code": "RC-001",
+      "failureTypeId": 96,
+      "title": "Blade depth too shallow",
+      "description": "The blade does not fully sever the insulation, leaving residue.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 209,
+          "stepNo": 1,
+          "instruction": "Increase the blade depth to fully sever the insulation.",
+          "type": "step"
+        },
+        {
+          "id": 210,
+          "stepNo": 2,
+          "instruction": "Re-strip and inspect for residue.",
+          "type": "step"
+        },
+        {
+          "id": 211,
+          "stepNo": 3,
+          "instruction": "Confirm the conductor is clean of insulation.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 129,
+          "kind": "OK",
+          "filePath": "/uploads/seed-79d55758-07bc-4eef-a7a9-f1e91c2a8946.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 130,
+          "kind": "NG",
+          "filePath": "/uploads/seed-abeb5f9e-f0ca-4b73-973d-669b0f2f2ae8.webp",
+          "caption": "Insulation residue on conductor"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:29.995Z",
+      "updatedAt": "2026-08-13T14:59:29.995Z"
+    },
+    {
+      "id": 77,
+      "code": "RC-002",
+      "failureTypeId": 96,
+      "title": "Pull-off distance too short / slug not removed",
+      "description": "The strip stroke does not fully pull the insulation slug off.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 212,
+          "stepNo": 1,
+          "instruction": "Increase the pull-off (strip) stroke to fully remove the slug.",
+          "type": "step"
+        },
+        {
+          "id": 213,
+          "stepNo": 2,
+          "instruction": "Verify complete slug removal.",
+          "type": "step"
+        },
+        {
+          "id": 214,
+          "stepNo": 3,
+          "instruction": "Confirm no insulation ring at the strip transition.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 131,
+          "kind": "OK",
+          "filePath": "/uploads/seed-4f23479e-f536-4d9b-809c-f7acf7fe11c0.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 132,
+          "kind": "NG",
+          "filePath": "/uploads/seed-a8fda264-baf8-4064-b22b-af54a3fe3b51.webp",
+          "caption": "Insulation residue on conductor"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.006Z",
+      "updatedAt": "2026-08-13T14:59:30.006Z"
+    },
+    {
+      "id": 78,
+      "code": "RC-003",
+      "failureTypeId": 96,
+      "title": "Blunt blades on tough insulation",
+      "description": "Cross-linked or tough insulation is not cleanly cut by worn blades.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 215,
+          "stepNo": 1,
+          "instruction": "Replace blades; adjust settings for the insulation material.",
+          "type": "step"
+        },
+        {
+          "id": 216,
+          "stepNo": 2,
+          "instruction": "Re-test.",
+          "type": "step"
+        },
+        {
+          "id": 217,
+          "stepNo": 3,
+          "instruction": "Confirm a clean cut on the insulation.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 133,
+          "kind": "OK",
+          "filePath": "/uploads/seed-97866f24-f0f2-458b-9831-133be7447ffe.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 134,
+          "kind": "NG",
+          "filePath": "/uploads/seed-ef48c56c-fc52-4fff-8fec-76bb1774e3bc.webp",
+          "caption": "Insulation residue on conductor"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.013Z",
+      "updatedAt": "2026-08-13T14:59:30.013Z"
+    },
+    {
+      "id": 79,
+      "code": "RC-001",
+      "failureTypeId": 97,
+      "title": "Strip length parameter incorrect",
+      "description": "The programmed strip length does not match the crimp / seal spec.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 218,
+          "stepNo": 1,
+          "instruction": "Set the strip length parameter to the crimp / seal spec.",
+          "type": "step"
+        },
+        {
+          "id": 219,
+          "stepNo": 2,
+          "instruction": "Measure strip length on test pieces.",
+          "type": "step"
+        },
+        {
+          "id": 220,
+          "stepNo": 3,
+          "instruction": "Confirm strip length within tolerance.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 135,
+          "kind": "OK",
+          "filePath": "/uploads/seed-ff178bfc-e1f8-457e-99b9-a4d4bac0034b.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 136,
+          "kind": "NG",
+          "filePath": "/uploads/seed-ddc2f086-fe30-4f15-8e61-2936168b8f24.webp",
+          "caption": "Strip length out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.051Z",
+      "updatedAt": "2026-08-13T14:59:30.051Z"
+    },
+    {
+      "id": 80,
+      "code": "RC-002",
+      "failureTypeId": 97,
+      "title": "Wire slip in the belts / clamps",
+      "description": "Wire slipping in the feed belts or clamps causes length drift.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 221,
+          "stepNo": 1,
+          "instruction": "Check and adjust belt / clamp pressure to prevent slip.",
+          "type": "step"
+        },
+        {
+          "id": 222,
+          "stepNo": 2,
+          "instruction": "Re-measure over several pieces.",
+          "type": "step"
+        },
+        {
+          "id": 223,
+          "stepNo": 3,
+          "instruction": "Confirm consistent strip length (no drift).",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 137,
+          "kind": "OK",
+          "filePath": "/uploads/seed-490a16fa-4e6b-4114-a3ec-44f53ed11762.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 138,
+          "kind": "NG",
+          "filePath": "/uploads/seed-bc2c9120-48ee-4226-9375-bd092034413d.webp",
+          "caption": "Strip length out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.062Z",
+      "updatedAt": "2026-08-13T14:59:30.062Z"
+    },
+    {
+      "id": 81,
+      "code": "RC-003",
+      "failureTypeId": 97,
+      "title": "Encoder / length calibration off",
+      "description": "The length measurement (encoder / roller) is out of calibration.",
+      "rank": 3,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 224,
+          "stepNo": 1,
+          "instruction": "Recalibrate the length measurement (encoder / roller).",
+          "type": "step"
+        },
+        {
+          "id": 225,
+          "stepNo": 2,
+          "instruction": "Validate against a measured reference.",
+          "type": "step"
+        },
+        {
+          "id": 226,
+          "stepNo": 3,
+          "instruction": "Confirm measured vs programmed length match.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 139,
+          "kind": "OK",
+          "filePath": "/uploads/seed-c8e77e86-ac51-4e91-bf6e-89b5a6c2c5fe.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 140,
+          "kind": "NG",
+          "filePath": "/uploads/seed-d07b1e2c-bb58-43c2-8226-974972996edc.webp",
+          "caption": "Strip length out of specification"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.070Z",
+      "updatedAt": "2026-08-13T14:59:30.070Z"
+    },
+    {
+      "id": 82,
+      "code": "RC-001",
+      "failureTypeId": 98,
+      "title": "Clamp / cut timing not synchronised",
+      "description": "The cutter moves before the wire is fully clamped, giving a partial strip.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 227,
+          "stepNo": 1,
+          "instruction": "Correct the clamp-then-cut timing so the wire is held before cutting.",
+          "type": "step"
+        },
+        {
+          "id": 228,
+          "stepNo": 2,
+          "instruction": "Re-run and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 229,
+          "stepNo": 3,
+          "instruction": "Confirm full clean removal every cycle.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 141,
+          "kind": "OK",
+          "filePath": "/uploads/seed-daffbc57-dccc-491d-a689-a74222cad43a.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 142,
+          "kind": "NG",
+          "filePath": "/uploads/seed-8e9bfbb6-34b6-4d65-98ed-4bcad46748b3.webp",
+          "caption": "Incomplete insulation removal"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.108Z",
+      "updatedAt": "2026-08-13T14:59:30.108Z"
+    },
+    {
+      "id": 83,
+      "code": "RC-002",
+      "failureTypeId": 98,
+      "title": "Insufficient cut depth",
+      "description": "The insulation is not fully severed, so the slug stays attached.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 230,
+          "stepNo": 1,
+          "instruction": "Increase cut depth to fully sever the insulation.",
+          "type": "step"
+        },
+        {
+          "id": 231,
+          "stepNo": 2,
+          "instruction": "Verify complete removal.",
+          "type": "step"
+        },
+        {
+          "id": 232,
+          "stepNo": 3,
+          "instruction": "Confirm no partial slug remains.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 143,
+          "kind": "OK",
+          "filePath": "/uploads/seed-7956d2a7-260e-448c-ac56-1fc6a390a038.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 144,
+          "kind": "NG",
+          "filePath": "/uploads/seed-2457d958-1a16-40bc-b240-6a53c54ba20b.webp",
+          "caption": "Incomplete insulation removal"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.116Z",
+      "updatedAt": "2026-08-13T14:59:30.116Z"
+    },
+    {
+      "id": 84,
+      "code": "RC-001",
+      "failureTypeId": 99,
+      "title": "Clamp force too high",
+      "description": "Excess gripper / clamp force flattens the conductor.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 233,
+          "stepNo": 1,
+          "instruction": "Reduce clamp / gripper force to hold without deforming.",
+          "type": "step"
+        },
+        {
+          "id": 234,
+          "stepNo": 2,
+          "instruction": "Inspect conductor shape.",
+          "type": "step"
+        },
+        {
+          "id": 235,
+          "stepNo": 3,
+          "instruction": "Confirm a round, undamaged conductor.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 145,
+          "kind": "OK",
+          "filePath": "/uploads/seed-6ee9ed58-dd8e-47d4-955d-720c02cc8a85.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 146,
+          "kind": "NG",
+          "filePath": "/uploads/seed-f3a00358-a84e-42ba-9e4f-179259c49599.webp",
+          "caption": "Conductor deformed or flattened"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.344Z",
+      "updatedAt": "2026-08-13T14:59:30.344Z"
+    },
+    {
+      "id": 85,
+      "code": "RC-002",
+      "failureTypeId": 99,
+      "title": "Blades closing onto the conductor",
+      "description": "The blades close too far at pull-off and squeeze the conductor.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 236,
+          "stepNo": 1,
+          "instruction": "Increase the blade opening at pull-off to clear the conductor.",
+          "type": "step"
+        },
+        {
+          "id": 237,
+          "stepNo": 2,
+          "instruction": "Re-strip and inspect.",
+          "type": "step"
+        },
+        {
+          "id": 238,
+          "stepNo": 3,
+          "instruction": "Confirm the blades do not contact the conductor.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 147,
+          "kind": "OK",
+          "filePath": "/uploads/seed-e72ccad8-20b7-4d03-a100-2fe2558a1a16.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 148,
+          "kind": "NG",
+          "filePath": "/uploads/seed-809a1c9b-32cf-403d-9c6c-695198c8fce8.webp",
+          "caption": "Conductor deformed or flattened"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.352Z",
+      "updatedAt": "2026-08-13T14:59:30.352Z"
+    },
+    {
+      "id": 86,
+      "code": "RC-001",
+      "failureTypeId": 100,
+      "title": "Blades not closing / stripping disabled",
+      "description": "The strip head does not actuate or the recipe has stripping disabled.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 239,
+          "stepNo": 1,
+          "instruction": "Verify the strip head actuates and the recipe enables stripping.",
+          "type": "step"
+        },
+        {
+          "id": 240,
+          "stepNo": 2,
+          "instruction": "Run a test cycle.",
+          "type": "step"
+        },
+        {
+          "id": 241,
+          "stepNo": 3,
+          "instruction": "Confirm insulation is removed on every end.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 149,
+          "kind": "OK",
+          "filePath": "/uploads/seed-1e8efe9c-e3d6-4749-bac0-f4cac6a5367c.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 150,
+          "kind": "NG",
+          "filePath": "/uploads/seed-8dc181ea-61ef-49ae-97f1-9639c3eb7423.webp",
+          "caption": "Insulation not removed"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.389Z",
+      "updatedAt": "2026-08-13T14:59:30.389Z"
+    },
+    {
+      "id": 87,
+      "code": "RC-002",
+      "failureTypeId": 100,
+      "title": "Wire mis-fed / not clamped",
+      "description": "The wire slips or is not clamped, so the strip head misses it.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 242,
+          "stepNo": 1,
+          "instruction": "Check the wire feed and clamp; clear any slip or jam.",
+          "type": "step"
+        },
+        {
+          "id": 243,
+          "stepNo": 2,
+          "instruction": "Re-run.",
+          "type": "step"
+        },
+        {
+          "id": 244,
+          "stepNo": 3,
+          "instruction": "Confirm the wire is clamped before strip.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 151,
+          "kind": "OK",
+          "filePath": "/uploads/seed-dd67c72c-81df-4851-a4dd-196d396bd8ac.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 152,
+          "kind": "NG",
+          "filePath": "/uploads/seed-799e5ca2-b377-43b5-af74-fcd114f669cf.webp",
+          "caption": "Insulation not removed"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.397Z",
+      "updatedAt": "2026-08-13T14:59:30.397Z"
+    },
+    {
+      "id": 88,
+      "code": "RC-001",
+      "failureTypeId": 101,
+      "title": "Length calibration / material stretch",
+      "description": "Miscalibration or wire stretch produces the wrong cut length.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 245,
+          "stepNo": 1,
+          "instruction": "Recalibrate cut length; compensate for wire stretch / slip.",
+          "type": "step"
+        },
+        {
+          "id": 246,
+          "stepNo": 2,
+          "instruction": "Measure several pieces.",
+          "type": "step"
+        },
+        {
+          "id": 247,
+          "stepNo": 3,
+          "instruction": "Confirm cut length within tolerance.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 153,
+          "kind": "OK",
+          "filePath": "/uploads/seed-0e4ba64a-192d-47dd-bf48-42f354e890fe.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 154,
+          "kind": "NG",
+          "filePath": "/uploads/seed-abcd1089-1214-4968-b405-789dcd77c254.webp",
+          "caption": "Cut length out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.621Z",
+      "updatedAt": "2026-08-13T14:59:30.621Z"
+    },
+    {
+      "id": 89,
+      "code": "RC-002",
+      "failureTypeId": 101,
+      "title": "Belt / roller wear or slip",
+      "description": "Worn feed belts or rollers cause length variation.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 248,
+          "stepNo": 1,
+          "instruction": "Inspect and replace worn feed belts / rollers.",
+          "type": "step"
+        },
+        {
+          "id": 249,
+          "stepNo": 2,
+          "instruction": "Re-verify length.",
+          "type": "step"
+        },
+        {
+          "id": 250,
+          "stepNo": 3,
+          "instruction": "Confirm stable length across a run.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 155,
+          "kind": "OK",
+          "filePath": "/uploads/seed-67e12077-f63c-4652-b4ef-e151676dc0ae.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 156,
+          "kind": "NG",
+          "filePath": "/uploads/seed-500be8ba-2f62-4dd6-918e-700d5989564f.webp",
+          "caption": "Cut length out of tolerance"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.629Z",
+      "updatedAt": "2026-08-13T14:59:30.629Z"
+    },
+    {
+      "id": 90,
+      "code": "RC-001",
+      "failureTypeId": 102,
+      "title": "Dull blades",
+      "description": "Worn blades tear rather than cleanly cut the insulation.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 251,
+          "stepNo": 1,
+          "instruction": "Replace the stripping blades.",
+          "type": "step"
+        },
+        {
+          "id": 252,
+          "stepNo": 2,
+          "instruction": "Inspect the cut-edge quality.",
+          "type": "step"
+        },
+        {
+          "id": 253,
+          "stepNo": 3,
+          "instruction": "Confirm a clean, square insulation cut.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 157,
+          "kind": "OK",
+          "filePath": "/uploads/seed-cc7f1c36-0ea6-4205-bec6-303774ace199.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 158,
+          "kind": "NG",
+          "filePath": "/uploads/seed-aafe9435-8ca7-493c-95db-7be9b2d324ac.webp",
+          "caption": "Ragged or torn insulation cut"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.672Z",
+      "updatedAt": "2026-08-13T14:59:30.672Z"
+    },
+    {
+      "id": 91,
+      "code": "RC-002",
+      "failureTypeId": 102,
+      "title": "Strip speed too high for the material",
+      "description": "A high pull-off speed tears elastic or soft insulation.",
+      "rank": 2,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 254,
+          "stepNo": 1,
+          "instruction": "Reduce the pull-off speed for elastic / soft insulation.",
+          "type": "step"
+        },
+        {
+          "id": 255,
+          "stepNo": 2,
+          "instruction": "Re-test.",
+          "type": "step"
+        },
+        {
+          "id": 256,
+          "stepNo": 3,
+          "instruction": "Confirm no tearing or stretching.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 159,
+          "kind": "OK",
+          "filePath": "/uploads/seed-907847a2-3c26-4d13-8002-e5a141f60ee1.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 160,
+          "kind": "NG",
+          "filePath": "/uploads/seed-eac12498-e00c-4c30-bc8a-a1db333d23d3.webp",
+          "caption": "Ragged or torn insulation cut"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.679Z",
+      "updatedAt": "2026-08-13T14:59:30.679Z"
+    },
+    {
+      "id": 92,
+      "code": "RC-001",
+      "failureTypeId": 103,
+      "title": "Blade depth slightly over the conductor",
+      "description": "The blade lightly scores the strands around the full circumference.",
+      "rank": 1,
+      "isActive": true,
+      "steps": [
+        {
+          "id": 257,
+          "stepNo": 1,
+          "instruction": "Back off the blade depth to the insulation-only setting.",
+          "type": "step"
+        },
+        {
+          "id": 258,
+          "stepNo": 2,
+          "instruction": "Use strand-contact detection to confirm.",
+          "type": "step"
+        },
+        {
+          "id": 259,
+          "stepNo": 3,
+          "instruction": "Confirm no ring score on the conductor.",
+          "type": "check"
+        }
+      ],
+      "media": [
+        {
+          "id": 161,
+          "kind": "OK",
+          "filePath": "/uploads/seed-5c4d914d-9d31-4651-af40-fd1887fa46aa.webp",
+          "caption": "Conform reference"
+        },
+        {
+          "id": 162,
+          "kind": "NG",
+          "filePath": "/uploads/seed-5ace02b1-93d7-4e57-89a1-41eee464ff8a.webp",
+          "caption": "Conductor ring-cut (score) on strands"
+        }
+      ],
+      "createdAt": "2026-08-13T14:59:30.720Z",
+      "updatedAt": "2026-08-13T14:59:30.720Z"
+    }
+  ]
+}
