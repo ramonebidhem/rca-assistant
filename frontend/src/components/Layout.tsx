@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { SearchBar } from './SearchBar.js';
 import { AssistantWidget } from './AssistantWidget.js';
 import { useSettings } from '../settings/SettingsContext.js';
+import { IS_STATIC } from '../static/staticApi.js';
 
 export function Header({ showSearch = false }: { showSearch?: boolean }) {
   const navigate = useNavigate();
@@ -34,14 +35,17 @@ export function Header({ showSearch = false }: { showSearch?: boolean }) {
           </div>
         )}
 
-        <div className="ml-auto">
-          <Link
-            to="/admin"
-            className="rounded-lg border border-white/10 px-3.5 py-2 text-sm font-semibold text-slate-200 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
-          >
-            Admin
-          </Link>
-        </div>
+        {/* The published read-only build has no API server, so no admin. */}
+        {!IS_STATIC && (
+          <div className="ml-auto">
+            <Link
+              to="/admin"
+              className="rounded-lg border border-white/10 px-3.5 py-2 text-sm font-semibold text-slate-200 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
+            >
+              Admin
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );

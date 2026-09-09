@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from 'react';
 import { publicApi } from '../api/endpoints.js';
-import { imageUrl } from '../api/client.js';
+import { imageUrl, assetUrl } from '../api/client.js';
 import type { SiteSettings } from '../types.js';
 
 const DEFAULTS: SiteSettings = {
@@ -33,7 +33,7 @@ export function useSettings() {
 
 // Falls back to the static /logo.png when no custom logo has been uploaded.
 function resolveLogo(logoPath: string | null): string {
-  return logoPath ? imageUrl(logoPath)! : '/logo.png';
+  return logoPath ? imageUrl(logoPath)! : assetUrl('/logo.png');
 }
 
 export function SettingsProvider({ children }: { children: ReactNode }) {

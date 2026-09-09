@@ -36,11 +36,20 @@ api.interceptors.response.use(
 );
 
 // Resolve an image path returned by the API to a URL the browser can load.
+// In the static build, images are shipped as files under the site's base path.
 export function imageUrl(path: string | null | undefined): string | undefined {
   if (!path) return undefined;
   if (/^https?:\/\//.test(path)) return path;
+  if (import.meta.env.VITE_STATIC === '1') {
+    return `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}${path}`;
+  }
   const origin = import.meta.env.VITE_API_URL ?? '';
   return `${origin}${path}`;
+}
+
+// Path to a file in /public, respecting the deployment base path.
+export function assetUrl(path: string): string {
+  return `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}${path}`;
 }
 
 export function apiErrorMessage(error: unknown): string {

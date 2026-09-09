@@ -1,4 +1,5 @@
 import { api, setToken } from './client.js';
+import { staticApi, IS_STATIC } from '../static/staticApi.js';
 import type {
   Category,
   FailureType,
@@ -11,7 +12,7 @@ import type {
 } from '../types.js';
 
 // --- Public / viewer --------------------------------------------------------
-export const publicApi = {
+const httpPublicApi = {
   listCategories: () => api.get<Category[]>('/categories').then((r) => r.data),
 
   getCategory: (id: number) =>
@@ -40,6 +41,10 @@ export const publicApi = {
   ask: (question: string) =>
     api.post<AssistantResponse>('/assistant/ask', { question }).then((r) => r.data),
 };
+
+// The static (GitHub Pages) build has no API server: serve everything from the
+// knowledge base bundled at build time.
+export const publicApi = (IS_STATIC ? staticApi : httpPublicApi) as typeof httpPublicApi;
 
 // --- Auth -------------------------------------------------------------------
 export const authApi = {

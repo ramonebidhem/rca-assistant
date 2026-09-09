@@ -8,6 +8,7 @@ import { Breadcrumb } from '../components/Breadcrumb.js';
 import { Loading, ErrorState, EmptyState } from '../components/States.js';
 import { Lightbox } from '../components/Lightbox.js';
 import { SuggestModal } from '../components/SuggestModal.js';
+import { IS_STATIC } from '../static/staticApi.js';
 import { CheckIcon, ExpandIcon, ImageIcon, PlusIcon } from '../components/icons.js';
 import type { RootCause, Media } from '../types.js';
 
@@ -195,15 +196,18 @@ export function RootCausesPage() {
             </div>
           )}
 
-          <div className="mt-10 flex justify-center">
-            <button
-              onClick={() => setSuggestOpen(true)}
-              className="btn-ghost btn-sm text-slate-500"
-            >
-              <PlusIcon size={15} />
-              Suggest a missing root cause
-            </button>
-          </div>
+          {/* Suggestions need the API server, so they're hidden when published read-only. */}
+          {!IS_STATIC && (
+            <div className="mt-10 flex justify-center">
+              <button
+                onClick={() => setSuggestOpen(true)}
+                className="btn-ghost btn-sm text-slate-500"
+              >
+                <PlusIcon size={15} />
+                Suggest a missing root cause
+              </button>
+            </div>
+          )}
 
           <SuggestModal
             open={suggestOpen}
