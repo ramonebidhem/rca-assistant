@@ -8,16 +8,51 @@ files, so there is **no database, no API keys and no external LLM service**.
 
 ```
 streamlit-app/
-├── streamlit_app.py        UI + routing
+├── streamlit_app.py        single-page router (no sidebar, no nav bar)
 ├── requirements.txt
-├── .streamlit/config.toml  theme
-├── data/knowledge.json     exported content + branding
-├── assets/uploads/         images (246 files)
+├── .streamlit/config.toml  Yazaki theme; hides the Deploy toolbar
+├── data/knowledge.json     content + branding
+├── assets/uploads/         images
 └── rca/
-    ├── data.py             knowledge-base loader
+    ├── store.py            read/write persistence + derived fields
+    ├── data.py             read helpers
     ├── retrieval.py        BM25 (pure Python, no dependencies)
-    └── assistant.py        grounded answer composition
+    ├── assistant.py        conversational grounded answers
+    ├── chat.py             floating assistant launcher + dialog
+    ├── views.py            library views
+    ├── admin_view.py       admin (content + branding)
+    └── ui.py               brand bar and shared styling
 ```
+
+## Design
+
+Styled after the Yazaki corporate site: brand red **#E60012** (sampled from the
+logo), white ground, squared industrial edges and uppercase section labels with
+a red rule. The brand bar is dark because the logo artwork is white.
+
+There is **no sidebar and no navigation bar** — the library is browsed inline,
+the assistant lives behind a floating launcher (bottom-right, like the React
+build) and the admin is reached from the link in the brand bar. Streamlit's
+Deploy toolbar is hidden via `toolbarMode = "viewer"`.
+
+## Admin
+
+`?view=admin`, or the **Admin** link in the brand bar. It offers the same
+capabilities as the React admin: dashboard counters, full CRUD for categories,
+failure types and root causes (with reordering, visibility toggles, a steps &
+checks editor and OK/NG image uploads) and branding (site name, slogan, logo,
+logo size).
+
+Access is gated:
+
+- With an OIDC provider under `[auth]` in `.streamlit/secrets.toml`, sign-in
+  uses `st.login()` and is restricted to the addresses in `admin_emails`.
+- Without a provider the admin is reachable **only from localhost**, so a
+  published deployment stays read-only.
+
+Edits are written back to `data/knowledge.json` and `assets/uploads/`. On
+Streamlit Community Cloud the filesystem is ephemeral, so edit locally and push
+the updated files.
 
 ---
 
@@ -109,5 +144,8 @@ Then commit and push — Streamlit Cloud redeploys on its own.
   a paid Streamlit plan.
 - **Sleeps when idle.** Free apps go to sleep after a period of inactivity and
   wake on the next visit (a few seconds).
-- **The assistant is fully local.** Retrieval is BM25 implemented in pure
-  Python — it ranks identically to the TypeScript version used by the React build.
+- **The assistant is fully local.** Retrieval is BM25 in pure Python — no model
+  download, no API key, no external service. It handles greetings, remembers the
+  topic so short follow-ups ("what about the checks?") work, and suggests next
+  questions. Because it composes answers from your documented steps and checks,
+  it cannot hallucinate.

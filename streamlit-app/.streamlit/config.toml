@@ -1,9 +1,33 @@
-[theme]
-primaryColor = "#1450E0"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#EDF0F3"
-textColor = "#0F1419"
-font = "sans serif"
+# Yazaki-inspired corporate theme: brand red on white, squared industrial edges.
+# Brand red (#E60012) sampled directly from the Yazaki logo.
+
+[client]
+# Hide the Deploy button, rerun and clear-cache menu ("deploy bar").
+toolbarMode = "viewer"
+showSidebarNavigation = false
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#E60012"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F6F8"
+textColor = "#14181F"
+linkColor = "#E60012"
+borderColor = "#E1E5EA"
+# Corporate/industrial: minimal rounding
+baseRadius = "0.25rem"
+showWidgetBorder = true
+
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+headingFontWeights = [800, 700, 700]
+
+greenColor = "#17843F"
+redColor = "#C21807"
+blueColor = "#0B4DA2"
+
+dataframeBorderColor = "#E1E5EA"
+dataframeHeaderBackgroundColor = "#F4F6F8"

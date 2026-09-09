@@ -1,81 +1,76 @@
-"""Loads the bundled knowledge base (content + branding).
+"""Read helpers over the knowledge base.
 
-The JSON is exported from the main app's database, so this app needs no
-database of its own and can be hosted as a plain Streamlit deployment.
+Thin, read-only accessors on top of `store`, so pages never touch the raw JSON.
+Everything reflects admin edits immediately because `store` owns the cache.
 """
 
 from __future__ import annotations
 
-import json
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_FILE = ROOT / "data" / "knowledge.json"
-UPLOAD_DIR = ROOT / "assets" / "uploads"
-FALLBACK_LOGO = ROOT / "assets" / "logo.png"
+from . import store
 
-
-@lru_cache(maxsize=1)
-def load() -> dict[str, Any]:
-    with DATA_FILE.open(encoding="utf-8") as fh:
-        return json.load(fh)
+UPLOAD_DIR = store.UPLOAD_DIR
+FALLBACK_LOGO = store.FALLBACK_LOGO
 
 
 def settings() -> dict[str, Any]:
-    return load().get("settings", {})
+    return store.load().get("settings", dict(store.DEFAULT_SETTINGS))
 
 
-def categories() -> list[dict[str, Any]]:
-    return load().get("categories", [])
+def categories(active_only: bool = True) -> list[dict[str, Any]]:
+    items = store.load().get("categories", [])
+    if active_only:
+        items = [c for c in items if c.get("isActive", True)]
+    return sorted(items, key=lambda c: c.get("sortOrder", 0))
 
 
-def failure_types() -> list[dict[str, Any]]:
-    return load().get("failureTypes", [])
+def failure_types(active_only: bool = True) -> list[dict[str, Any]]:
+    items = store.load().get("failureTypes", [])
+    if active_only:
+        items = [f for f in items if f.get("isActive", True)]
+    return sorted(items, key=lambda f: (f.get("categoryId", 0), f.get("sortOrder", 0)))
 
 
-def root_causes() -> list[dict[str, Any]]:
-    return load().get("rootCauses", [])
+def root_causes(active_only: bool = True) -> list[dict[str, Any]]:
+    items = store.load().get("rootCauses", [])
+    if active_only:
+        items = [r for r in items if r.get("isActive", True)]
+    return sorted(items, key=lambda r: (r.get("failureTypeId", 0), r.get("rank", 0)))
 
 
 def category(category_id: int) -> dict[str, Any] | None:
-    return next((c for c in categories() if c["id"] == category_id), None)
+    return next((c for c in categories(False) if c["id"] == category_id), None)
 
 
 def failure_type(failure_type_id: int) -> dict[str, Any] | None:
-    return next((f for f in failure_types() if f["id"] == failure_type_id), None)
+    return next((f for f in failure_types(False) if f["id"] == failure_type_id), None)
 
 
-def failure_types_of(category_id: int) -> list[dict[str, Any]]:
-    return [f for f in failure_types() if f["categoryId"] == category_id]
+def failure_types_of(category_id: int, active_only: bool = True) -> list[dict[str, Any]]:
+    return [f for f in failure_types(active_only) if f["categoryId"] == category_id]
 
 
-def root_causes_of(failure_type_id: int) -> list[dict[str, Any]]:
-    return sorted(
-        (r for r in root_causes() if r["failureTypeId"] == failure_type_id),
-        key=lambda r: r["rank"],
-    )
+def root_causes_of(failure_type_id: int, active_only: bool = True) -> list[dict[str, Any]]:
+    return [r for r in root_causes(active_only) if r["failureTypeId"] == failure_type_id]
 
 
 def steps_of(root_cause: dict[str, Any]) -> list[str]:
-    return [s["instruction"] for s in root_cause.get("steps", []) if s["type"] == "step"]
+    return [s["instruction"] for s in root_cause.get("steps", []) if s.get("type") == "step"]
 
 
 def checks_of(root_cause: dict[str, Any]) -> list[str]:
-    return [s["instruction"] for s in root_cause.get("steps", []) if s["type"] == "check"]
+    return [s["instruction"] for s in root_cause.get("steps", []) if s.get("type") == "check"]
 
 
 def image_path(stored_path: str | None) -> Path | None:
-    """Map a stored path like '/uploads/<id>.webp' to a local file."""
-    if not stored_path:
-        return None
-    candidate = UPLOAD_DIR / Path(stored_path).name
-    return candidate if candidate.exists() else None
+    """Map a stored path like '/uploads/<name>.webp' to a local file."""
+    return store.resolve_image(stored_path)
 
 
 def logo_path() -> Path | None:
-    """The branding logo, falling back to the bundled placeholder."""
+    """Branding logo, falling back to the bundled placeholder."""
     return image_path(settings().get("logoPath")) or (
         FALLBACK_LOGO if FALLBACK_LOGO.exists() else None
     )
@@ -87,3 +82,11 @@ def search_failure_types(query: str, limit: int = 10) -> list[dict[str, Any]]:
         return []
     matches = [f for f in failure_types() if needle in f["name"].lower()]
     return sorted(matches, key=lambda f: f["name"])[:limit]
+
+
+def counts() -> dict[str, int]:
+    return {
+        "categories": len(categories(False)),
+        "failureTypes": len(failure_types(False)),
+        "rootCauses": len(root_causes(False)),
+    }

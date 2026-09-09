@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from typing import Any, Literal
 
-from . import data
+from . import data, store
 from .retrieval import Bm25Index, IndexedDoc, expand_query_tokens, tokenize
 
 Intent = Literal["causes", "steps", "checks", "overview"]
@@ -34,6 +34,9 @@ class Answer:
     text: str
     sources: list[Source] = field(default_factory=list)
     suggestions: list[dict[str, Any]] = field(default_factory=list)
+    followups: list[str] = field(default_factory=list)
+    # Failure type the answer was about, so the next question can build on it.
+    focus_id: int | None = None
 
 
 def _detect_intent(raw: str) -> Intent:
@@ -61,14 +64,20 @@ def _bulletize(items: list[str], max_items: int = MAX_ITEMS) -> str:
     return "\n".join(shown)
 
 
-@lru_cache(maxsize=1)
-def _index() -> Bm25Index[tuple[str, int]]:
-    """Build the retrieval index once (cached for the process lifetime)."""
+@lru_cache(maxsize=2)
+def _index_for(_version: int) -> Bm25Index[tuple[str, int]]:
+    """Build the retrieval index, cached per knowledge-base version.
+
+    Keying on the store version means admin edits are picked up immediately
+    without rebuilding on every question.
+    """
     docs: list[IndexedDoc[tuple[str, int]]] = []
 
     for cat in data.categories():
         names = [f["name"] for f in data.failure_types_of(cat["id"])]
-        text = " \n ".join([cat["name"], cat.get("description") or "", *names])
+        # Repeat the name so a category competes fairly with its children,
+        # whose documents also contain the category name.
+        text = " \n ".join([cat["name"], cat["name"], cat.get("description") or "", *names])
         docs.append(IndexedDoc(("category", cat["id"]), tokenize(text)))
 
     for ft in data.failure_types():
@@ -95,9 +104,66 @@ def _index() -> Bm25Index[tuple[str, int]]:
     return Bm25Index(docs)
 
 
-def ask(question: str) -> Answer:
+GREETING_RE = re.compile(r"^\s*(hi|hey|hello|good\s+(morning|afternoon|evening)|salut|bonjour)\b", re.I)
+THANKS_RE = re.compile(r"\b(thanks|thank you|merci|cheers)\b", re.I)
+HELP_RE = re.compile(r"^\s*(help|what can you do|how does this work|who are you)\b", re.I)
+# "what about the checks?" — refers back to the last thing discussed.
+FOLLOWUP_RE = re.compile(
+    r"^\s*(and\s+)?(what about|how about|the )?\s*(steps?|checks?|causes?|more|details?)\b|^\s*(and|ok|okay)\b",
+    re.I,
+)
+
+
+def _small_talk(raw: str) -> Answer | None:
+    """Handle conversational openers so the assistant feels responsive."""
+    counts = {
+        "c": len(data.categories()),
+        "f": len(data.failure_types()),
+        "r": len(data.root_causes()),
+    }
+    if HELP_RE.search(raw):
+        cats = ", ".join(c["name"] for c in data.categories())
+        return Answer(
+            matched=True,
+            text=(
+                "I answer questions about the defects documented on this platform — "
+                f"**{counts['f']} failure types** and **{counts['r']} root causes** across "
+                f"**{cats}**.\n\nAsk me things like what causes a defect, how to fix it, "
+                "or which checks to run."
+            ),
+            followups=[
+                "How do I fix strands out of the crimp?",
+                "What checks should I do for a damaged seal?",
+            ],
+        )
+    if GREETING_RE.search(raw) and len(raw.split()) <= 4:
+        return Answer(
+            matched=True,
+            text=(
+                "Hello. Ask me about any documented defect — I'll pull the root causes, "
+                "steps and checks straight from the library."
+            ),
+            followups=[
+                "What causes crimp height out of specification?",
+                "List all defects in stripping",
+            ],
+        )
+    if THANKS_RE.search(raw) and len(raw.split()) <= 4:
+        return Answer(matched=True, text="Happy to help. Ask me anything else about the library.")
+    return None
+
+
+def ask(question: str, focus_id: int | None = None) -> Answer:
     raw = (question or "").strip()
-    results = _index().search(expand_query_tokens(tokenize(raw)))
+
+    small = _small_talk(raw)
+    if small is not None:
+        return small
+
+    # A short follow-up ("what about the checks?") continues the previous topic.
+    if focus_id is not None and FOLLOWUP_RE.match(raw) and len(raw.split()) <= 6:
+        return _failure_type_answer(focus_id, {}, _detect_intent(raw))
+    results = _index_for(store.version()).search(expand_query_tokens(tokenize(raw)))
 
     cat_score: dict[int, float] = {}
     ft_score: dict[int, float] = {}
@@ -111,15 +177,18 @@ def ask(question: str) -> Answer:
             rc_score[ref_id] = score
 
     # A failure type scores on its own match plus its best root cause.
-    best_ft_id, best_ft_agg = -1, 0.0
+    # `best_ft_direct` keeps the single-document score for a fair comparison
+    # against a category (which is also a single document).
+    best_ft_id, best_ft_agg, best_ft_direct = -1, 0.0, 0.0
     for ft in data.failure_types():
         child_best = max(
             (rc_score.get(rc["id"], 0.0) for rc in data.root_causes_of(ft["id"])),
             default=0.0,
         )
-        agg = ft_score.get(ft["id"], 0.0) + child_best
+        direct = ft_score.get(ft["id"], 0.0)
+        agg = direct + child_best
         if agg > best_ft_agg:
-            best_ft_id, best_ft_agg = ft["id"], agg
+            best_ft_id, best_ft_agg, best_ft_direct = ft["id"], agg, direct
 
     best_cat_id, best_cat_score = -1, 0.0
     for cat_id, score in cat_score.items():
@@ -130,7 +199,7 @@ def ask(question: str) -> Answer:
         return _no_match()
 
     use_category = best_cat_score > 0 and (
-        best_ft_agg == 0 or (_is_listy(raw) and best_cat_score >= best_ft_agg)
+        best_ft_agg == 0 or (_is_listy(raw) and best_cat_score >= best_ft_direct)
     )
     if use_category and data.failure_types_of(best_cat_id):
         return _category_overview(best_cat_id)
@@ -178,6 +247,7 @@ def _category_overview(category_id: int) -> Answer:
         ),
         sources=[Source(label=cat.get("name", ""), sublabel="Category", kind="category", target_id=category_id)],
         suggestions=[{"label": f["name"], "id": f["id"]} for f in fts],
+        followups=[f"What causes {f['name'].lower()}?" for f in fts[:2]],
     )
 
 
@@ -233,14 +303,23 @@ def _failure_type_answer(failure_type_id: int, rc_score: dict[int, float], inten
             "Open the failure type to see them all with OK/NG photos."
         )
 
+    name = ft.get("name", "")
+    followups = {
+        "checks": [f"How do I fix {name.lower()}?", f"What causes {name.lower()}?"],
+        "steps": [f"What checks should I do for {name.lower()}?"],
+        "causes": [f"How do I fix {name.lower()}?"],
+    }.get(intent, [f"What checks should I do for {name.lower()}?"])
+
     return Answer(
         matched=True,
         text=text,
         sources=[
             Source(
-                label=ft.get("name", ""),
+                label=name,
                 sublabel=f"{category_name} · {len(causes)} root causes",
                 target_id=failure_type_id,
             )
         ],
+        followups=followups,
+        focus_id=failure_type_id,
     )

@@ -19,6 +19,9 @@ STOPWORDS = {
     "have", "has", "get", "got", "there", "about", "into", "out", "if", "so", "not",
     "no", "any", "some", "please", "help", "need", "want", "tell", "show", "give",
     "they", "them",
+    # Navigational quantifiers: intent is detected from the raw question, so
+    # these must not sway which document is retrieved.
+    "list", "all", "every",
 }
 
 # Domain synonyms so "crimping" also matches "crimp", "wire" matches "strand", etc.
