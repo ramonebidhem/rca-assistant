@@ -6,6 +6,10 @@
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
 
+# Prisma's query/schema engines link against libssl; bookworm-slim doesn't
+# ship it, so `prisma generate` can't detect the right engine binary.
+RUN apt-get update -y && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies first for better layer caching.
 COPY backend/package*.json ./backend/
 RUN cd backend && npm install
@@ -21,6 +25,10 @@ RUN cd backend && npx prisma generate && npm run build
 # --- runtime stage ---
 FROM node:22-bookworm-slim
 WORKDIR /app
+
+# Same reason as the build stage: Prisma's engine binaries need libssl at
+# runtime (schema engine for `migrate deploy`, query engine for the app).
+RUN apt-get update -y && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production \
     CLIENT_DIR=/app/client \
