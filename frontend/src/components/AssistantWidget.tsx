@@ -63,8 +63,8 @@ export function AssistantWidget() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close assistant' : 'Ask the assistant'}
-        className={`fixed bottom-5 right-5 z-40 flex h-14 items-center gap-2 rounded-full px-4 text-white shadow-pop transition-all hover:scale-105 ${
-          open ? 'bg-slate-800' : 'bg-accent'
+        className={`fixed bottom-5 right-5 z-40 flex h-14 items-center gap-2 rounded-full border px-4 text-white shadow-pop backdrop-blur-xl transition-all hover:scale-105 ${
+          open ? 'border-white/15 bg-ink/70' : 'border-white/25 bg-accent/80'
         }`}
       >
         {open ? <XIcon size={22} /> : <SparklesIcon size={22} />}
@@ -73,15 +73,18 @@ export function AssistantWidget() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-24 right-5 z-40 flex h-[min(34rem,calc(100vh-8rem))] w-[min(24rem,calc(100vw-2.5rem))] animate-slide-up flex-col overflow-hidden rounded-xl2 border border-slate-200 bg-white shadow-pop">
+        <div className="fixed bottom-24 right-5 z-40 flex h-[min(34rem,calc(100vh-8rem))] w-[min(24rem,calc(100vw-2.5rem))] animate-slide-up flex-col overflow-hidden rounded-xl2 border border-white/30 bg-white/60 shadow-pop backdrop-blur-2xl">
+          {/* Glass highlight */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+
           {/* Header */}
-          <div className="flex items-center gap-3 bg-ink px-4 py-3 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
+          <div className="flex items-center gap-3 border-b border-white/10 bg-ink/70 px-4 py-3 text-white backdrop-blur-xl">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/80 backdrop-blur-sm">
               <SparklesIcon size={18} />
             </span>
             <div className="leading-tight">
               <div className="text-sm font-bold">AI Assistant</div>
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-300">
                 <span className="h-1.5 w-1.5 rounded-full bg-ok" />
                 Local · grounded in platform data
               </div>
@@ -89,7 +92,7 @@ export function AssistantWidget() {
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto bg-surface p-4">
+          <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto bg-white/20 p-4">
             {messages.length === 0 && (
               <div className="space-y-3">
                 <div className="card p-3.5 text-sm text-slate-600">
@@ -183,14 +186,14 @@ export function AssistantWidget() {
               e.preventDefault();
               send(input);
             }}
-            className="flex items-center gap-2 border-t border-slate-200 bg-white p-3"
+            className="flex items-center gap-2 border-t border-white/30 bg-white/40 p-3 backdrop-blur-xl"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about a defect…"
               aria-label="Ask the assistant"
-              className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:shadow-focus"
+              className="flex-1 rounded-lg border border-slate-900/15 bg-white/60 px-3 py-2 text-sm outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-accent focus:shadow-focus"
             />
             <button
               type="submit"

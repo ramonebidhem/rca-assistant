@@ -13,6 +13,7 @@ export async function getSettings() {
 export async function updateSettings(input: {
   siteName?: string;
   slogan?: string;
+  footerText?: string;
   logoScale?: number;
 }) {
   await getSettings(); // ensure the row exists
@@ -28,7 +29,23 @@ export async function setLogo(logoPath: string) {
   return prisma.settings.update({ where: { id: SETTINGS_ID }, data: { logoPath } });
 }
 
+// Replace the admin/login logo, removing the previously uploaded file if any.
+export async function setAdminLogo(adminLogoPath: string) {
+  const current = await getSettings();
+  if (current.adminLogoPath && current.adminLogoPath !== adminLogoPath) {
+    await deleteImage(current.adminLogoPath);
+  }
+  return prisma.settings.update({ where: { id: SETTINGS_ID }, data: { adminLogoPath } });
+}
+
 export async function serializeSettings() {
   const s = await getSettings();
-  return { siteName: s.siteName, slogan: s.slogan, logoPath: s.logoPath, logoScale: s.logoScale };
+  return {
+    siteName: s.siteName,
+    slogan: s.slogan,
+    footerText: s.footerText,
+    logoPath: s.logoPath,
+    adminLogoPath: s.adminLogoPath,
+    logoScale: s.logoScale,
+  };
 }

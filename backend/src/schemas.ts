@@ -81,8 +81,14 @@ export const updateSettingsSchema = z
   .object({
     siteName: z.string().trim().min(1, 'Site name is required').max(80).optional(),
     slogan: z.string().trim().max(160).optional(),
+    footerText: z.string().trim().max(200).optional(),
     logoScale: z.coerce.number().int().min(40).max(240).optional(),
   })
-  .refine((v) => v.siteName !== undefined || v.slogan !== undefined || v.logoScale !== undefined, {
-    message: 'Provide at least one field to update',
-  });
+  .refine(
+    (v) =>
+      v.siteName !== undefined ||
+      v.slogan !== undefined ||
+      v.footerText !== undefined ||
+      v.logoScale !== undefined,
+    { message: 'Provide at least one field to update' },
+  );

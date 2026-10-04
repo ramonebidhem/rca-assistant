@@ -12,8 +12,9 @@ const MAX_SCALE = 240;
 
 export function SettingsPage() {
   const toast = useToast();
-  const { logoUrl, refresh } = useSettings();
+  const { logoUrl, adminLogoUrl, refresh } = useSettings();
   const fileRef = useRef<HTMLInputElement>(null);
+  const adminFileRef = useRef<HTMLInputElement>(null);
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['admin', 'settings'],
@@ -22,14 +23,17 @@ export function SettingsPage() {
 
   const [siteName, setSiteName] = useState('');
   const [slogan, setSlogan] = useState('');
+  const [footerText, setFooterText] = useState('');
   const [logoScale, setLogoScale] = useState(100);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadingAdmin, setUploadingAdmin] = useState(false);
 
   useEffect(() => {
     if (data) {
       setSiteName(data.siteName);
       setSlogan(data.slogan);
+      setFooterText(data.footerText ?? '');
       setLogoScale(data.logoScale ?? 100);
     }
   }, [data]);
@@ -39,7 +43,12 @@ export function SettingsPage() {
     if (!siteName.trim()) return;
     setSaving(true);
     try {
-      await adminApi.updateSettings({ siteName: siteName.trim(), slogan: slogan.trim(), logoScale });
+      await adminApi.updateSettings({
+        siteName: siteName.trim(),
+        slogan: slogan.trim(),
+        footerText: footerText.trim(),
+        logoScale,
+      });
       await Promise.all([refetch(), refresh()]);
       toast('Branding updated');
     } catch (err) {
@@ -62,6 +71,19 @@ export function SettingsPage() {
     }
   };
 
+  const uploadAdminLogo = async (file: File) => {
+    setUploadingAdmin(true);
+    try {
+      await adminApi.uploadAdminLogo(file);
+      await Promise.all([refetch(), refresh()]);
+      toast('Admin logo updated');
+    } catch (err) {
+      toast(apiErrorMessage(err), 'error');
+    } finally {
+      setUploadingAdmin(false);
+    }
+  };
+
   // Live preview sizes driven by the slider (before saving).
   const headerLogo = Math.round((64 * logoScale) / 100);
   const tileLogo = Math.min(headerLogo, 88);
@@ -76,51 +98,96 @@ export function SettingsPage() {
 
       {data && (
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Logo + size */}
-          <section className="card p-5 lg:col-span-1">
-            <h2 className="text-sm font-bold text-slate-900">Logo</h2>
-            <p className="field-hint mt-0.5">
-              PNG recommended (transparent background). Shown in the header, admin sidebar,
-              and login page.
-            </p>
-            <div className="mt-4 flex flex-col items-center gap-4 rounded-xl2 border border-dashed border-slate-200 bg-slate-50/60 p-6">
-              <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-xl2 bg-ink ring-1 ring-white/10">
-                <img
-                  src={logoUrl}
-                  alt="Current logo"
-                  className="h-auto object-contain"
-                  style={{ width: tileLogo }}
+          {/* Logos + size */}
+          <div className="space-y-6 lg:col-span-1">
+            <section className="card p-5">
+              <h2 className="text-sm font-bold text-slate-900">Public logo</h2>
+              <p className="field-hint mt-0.5">
+                Shown in the site header on a light background — use a dark or colour mark, not
+                a white one.
+              </p>
+              <div className="mt-4 flex flex-col items-center gap-4 rounded-xl2 border border-dashed border-slate-200 bg-slate-50/60 p-6">
+                <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-xl2 bg-white ring-1 ring-slate-200">
+                  <img
+                    src={logoUrl}
+                    alt="Current public logo"
+                    className="h-auto object-contain"
+                    style={{ width: tileLogo }}
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btn-ghost btn-sm"
+                  disabled={uploading}
+                  onClick={() => fileRef.current?.click()}
+                >
+                  {uploading ? (
+                    'Uploading…'
+                  ) : (
+                    <>
+                      <UploadIcon size={15} /> Replace logo
+                    </>
+                  )}
+                </button>
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="image/png,image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) uploadLogo(f);
+                    e.target.value = '';
+                  }}
                 />
               </div>
-              <button
-                type="button"
-                className="btn-ghost btn-sm"
-                disabled={uploading}
-                onClick={() => fileRef.current?.click()}
-              >
-                {uploading ? (
-                  'Uploading…'
-                ) : (
-                  <>
-                    <UploadIcon size={15} /> Replace logo
-                  </>
-                )}
-              </button>
-              <input
-                ref={fileRef}
-                type="file"
-                accept="image/png,image/*"
-                className="hidden"
-                onChange={(e) => {
-                  const f = e.target.files?.[0];
-                  if (f) uploadLogo(f);
-                  e.target.value = '';
-                }}
-              />
-            </div>
+            </section>
 
-            {/* Logo size control */}
-            <div className="mt-5">
+            <section className="card p-5">
+              <h2 className="text-sm font-bold text-slate-900">Admin &amp; login logo</h2>
+              <p className="field-hint mt-0.5">
+                Shown on the login screen and admin sidebar, both on a dark background — a white
+                mark works well here. Falls back to the public logo until you upload one.
+              </p>
+              <div className="mt-4 flex flex-col items-center gap-4 rounded-xl2 border border-dashed border-slate-200 bg-slate-50/60 p-6">
+                <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-xl2 bg-ink ring-1 ring-white/10">
+                  <img
+                    src={adminLogoUrl}
+                    alt="Current admin logo"
+                    className="h-auto object-contain"
+                    style={{ width: tileLogo }}
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btn-ghost btn-sm"
+                  disabled={uploadingAdmin}
+                  onClick={() => adminFileRef.current?.click()}
+                >
+                  {uploadingAdmin ? (
+                    'Uploading…'
+                  ) : (
+                    <>
+                      <UploadIcon size={15} /> Replace logo
+                    </>
+                  )}
+                </button>
+                <input
+                  ref={adminFileRef}
+                  type="file"
+                  accept="image/png,image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) uploadAdminLogo(f);
+                    e.target.value = '';
+                  }}
+                />
+              </div>
+            </section>
+
+            {/* Logo size control — applies to both logos wherever they appear */}
+            <section className="card p-5">
               <div className="mb-1 flex items-center justify-between">
                 <label htmlFor="logo-scale" className="text-sm font-semibold text-slate-700">
                   Logo size
@@ -150,9 +217,11 @@ export function SettingsPage() {
                 onChange={(e) => setLogoScale(Number(e.target.value))}
                 className="w-full accent-accent"
               />
-              <p className="field-hint">Scales the logo everywhere it appears. Click “Save changes” to apply.</p>
-            </div>
-          </section>
+              <p className="field-hint">
+                Scales both logos wherever they appear. Click “Save changes” to apply.
+              </p>
+            </section>
+          </div>
 
           {/* Name + slogan + preview */}
           <section className="card p-5 lg:col-span-2">
@@ -182,32 +251,80 @@ export function SettingsPage() {
                   placeholder="Optional tagline shown under the site name"
                 />
               </div>
-
-              {/* Live header preview (reflects the logo-size slider) */}
               <div>
-                <div className="field-label">Header preview</div>
-                <div className="flex min-h-[4.5rem] items-center gap-3 overflow-hidden rounded-xl2 bg-ink px-4 py-3 text-white">
-                  <span className="flex shrink-0 items-center justify-center overflow-hidden">
-                    {logoUrl ? (
-                      <img
-                        src={logoUrl}
-                        alt=""
-                        className="h-auto object-contain"
-                        style={{ width: headerLogo }}
-                      />
-                    ) : (
-                      <ImageIcon size={24} />
-                    )}
-                  </span>
-                  <span className="leading-tight">
-                    <span className="block text-xl font-extrabold tracking-tight">
-                      {siteName || 'Site name'}
+                <label className="field-label">Footer text</label>
+                <input
+                  value={footerText}
+                  onChange={(e) => setFooterText(e.target.value)}
+                  maxLength={200}
+                  className="field-input"
+                  placeholder="Shown centered in the site footer"
+                />
+              </div>
+
+              {/* Live preview (reflects the logo-size slider) */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div>
+                  <div className="field-label">Public header preview</div>
+                  <div className="flex min-h-[4.5rem] items-center gap-3 overflow-hidden rounded-xl2 border border-slate-200 bg-white px-4 py-3">
+                    <span className="flex shrink-0 items-center justify-center overflow-hidden">
+                      {logoUrl ? (
+                        <img
+                          src={logoUrl}
+                          alt=""
+                          className="h-auto object-contain"
+                          style={{ width: headerLogo }}
+                        />
+                      ) : (
+                        <ImageIcon size={24} className="text-slate-400" />
+                      )}
                     </span>
-                    {slogan && (
-                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400">
-                        {slogan}
+                    <span className="leading-tight">
+                      <span className="block text-xl font-extrabold tracking-tight text-slate-900">
+                        {siteName || 'Site name'}
                       </span>
-                    )}
+                      {slogan && (
+                        <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-slate-500">
+                          {slogan}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="field-label">Admin &amp; login preview</div>
+                  <div className="flex min-h-[4.5rem] items-center gap-3 overflow-hidden rounded-xl2 bg-ink px-4 py-3 text-white">
+                    <span className="flex shrink-0 items-center justify-center overflow-hidden">
+                      {adminLogoUrl ? (
+                        <img
+                          src={adminLogoUrl}
+                          alt=""
+                          className="h-auto object-contain"
+                          style={{ width: headerLogo }}
+                        />
+                      ) : (
+                        <ImageIcon size={24} />
+                      )}
+                    </span>
+                    <span className="leading-tight">
+                      <span className="block text-xl font-extrabold tracking-tight">
+                        {siteName || 'Site name'}
+                      </span>
+                      {slogan && (
+                        <span className="block text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400">
+                          {slogan}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="field-label">Footer preview</div>
+                <div className="flex min-h-[3.5rem] items-center justify-center overflow-hidden rounded-xl2 border border-slate-200 bg-white/70 px-4 py-3 text-center backdrop-blur-xl">
+                  <span className="text-xs tracking-wide text-slate-500">
+                    {footerText || 'Footer text'}
                   </span>
                 </div>
               </div>

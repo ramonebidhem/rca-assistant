@@ -144,7 +144,9 @@ model Settings {
   id        Int      @id @default(1)
   siteName  String   @default("Défauthèque") @map("site_name")
   slogan    String   @default("Find the cause. Fix it right.")
+  footerText String  @default("© 2026 ROOT CAUSE ANALYSIS PLATFORM — GME COSEE CUTTING") @map("footer_text")
   logoPath  String?  @map("logo_path")
+  adminLogoPath String? @map("admin_logo_path") // shown on the login screen and admin sidebar instead of logoPath
   logoScale Int      @default(100) @map("logo_scale") // % size multiplier for the logo
   updatedAt DateTime @updatedAt @map("updated_at")
 

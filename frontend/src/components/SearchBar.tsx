@@ -92,7 +92,7 @@ export function SearchBar({ onSelect, large }: SearchBarProps) {
           className={
             large
               ? 'w-full rounded-xl2 border border-slate-200 bg-white py-4 pl-12 pr-4 text-base text-slate-800 shadow-card outline-none transition placeholder:text-slate-400 focus:border-accent focus:shadow-focus'
-              : 'w-full rounded-lg border border-white/10 bg-white/10 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-white/30 focus:bg-white/15'
+              : 'w-full rounded-lg border border-slate-900/10 bg-white/50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none backdrop-blur-sm transition placeholder:text-slate-500 focus:border-accent/40 focus:bg-white/80'
           }
         />
         {loading && (

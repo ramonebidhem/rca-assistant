@@ -11,7 +11,7 @@ import {
 } from '../components/icons.js';
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
-  `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition ${
+  `flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold transition ${
     isActive
       ? 'bg-accent text-white shadow-sm'
       : 'text-slate-300 hover:bg-white/10 hover:text-white'
@@ -19,7 +19,7 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
 
 export function AdminLayout() {
   const { logout } = useAuth();
-  const { siteName, logoUrl, logoSize } = useSettings();
+  const { siteName, adminLogoUrl, logoSize } = useSettings();
   const navigate = useNavigate();
 
   const onLogout = () => {
@@ -29,10 +29,10 @@ export function AdminLayout() {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <aside className="flex flex-col bg-ink text-white md:sticky md:top-0 md:h-screen md:w-64">
+      <aside className="flex flex-col border-r-[3px] border-accent bg-ink text-white md:sticky md:top-0 md:h-screen md:w-64">
         <div className="flex items-center gap-3 border-b border-white/10 px-5 py-4">
           <img
-            src={logoUrl}
+            src={adminLogoUrl}
             alt=""
             className="h-auto object-contain"
             style={{ width: logoSize(48) }}

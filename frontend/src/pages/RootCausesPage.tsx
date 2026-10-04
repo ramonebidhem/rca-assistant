@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { publicApi } from '../api/endpoints.js';
 import { apiErrorMessage, imageUrl } from '../api/client.js';
 import { Layout } from '../components/Layout.js';
-import { Breadcrumb } from '../components/Breadcrumb.js';
+import { PageHero } from '../components/PageHero.js';
 import { Loading, ErrorState, EmptyState } from '../components/States.js';
 import { Lightbox } from '../components/Lightbox.js';
 import { SuggestModal } from '../components/SuggestModal.js';
@@ -154,13 +154,12 @@ export function RootCausesPage() {
   });
 
   return (
-    <Layout showSearch>
-      {isLoading && <Loading />}
-      {error && <ErrorState message={apiErrorMessage(error)} />}
-      {data && (
-        <>
-          <Breadcrumb
-            items={[
+    <Layout
+      showSearch
+      hero={
+        data && (
+          <PageHero
+            crumbs={[
               { label: 'Home', to: '/' },
               {
                 label: data.failureType.categoryName ?? 'Category',
@@ -168,24 +167,26 @@ export function RootCausesPage() {
               },
               { label: data.failureType.name },
             ]}
-          />
-
-          <div className="mb-7">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="id-tag">{data.failureType.code}</span>
-              <h1 className="text-3xl font-extrabold text-slate-900">{data.failureType.name}</h1>
-              {data.rootCauses.length > 0 && (
-                <span className="chip bg-accent-soft text-accent">
+            code={data.failureType.code}
+            title={data.failureType.name}
+            description={data.failureType.description}
+            imagePath={data.failureType.imagePath}
+            meta={
+              data.rootCauses.length > 0 && (
+                <span className="chip bg-accent/15 text-accent-ring">
                   {data.rootCauses.length} root cause
                   {data.rootCauses.length === 1 ? '' : 's'}
                 </span>
-              )}
-            </div>
-            {data.failureType.description && (
-              <p className="mt-2 max-w-3xl text-slate-500">{data.failureType.description}</p>
-            )}
-          </div>
-
+              )
+            }
+          />
+        )
+      }
+    >
+      {isLoading && <Loading />}
+      {error && <ErrorState message={apiErrorMessage(error)} />}
+      {data && (
+        <>
           {data.rootCauses.length === 0 ? (
             <EmptyState message="No root causes documented yet for this failure type." />
           ) : (

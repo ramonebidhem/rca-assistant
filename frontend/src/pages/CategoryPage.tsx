@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { publicApi } from '../api/endpoints.js';
 import { apiErrorMessage } from '../api/client.js';
 import { Layout } from '../components/Layout.js';
-import { Breadcrumb } from '../components/Breadcrumb.js';
-import { ItemCard, CardGrid } from '../components/ItemCard.js';
+import { PageHero } from '../components/PageHero.js';
+import { CategoryCard, CategoryGrid } from '../components/CategoryCard.js';
 import { Loading, ErrorState, EmptyState } from '../components/States.js';
 
 export function CategoryPage() {
@@ -16,25 +16,30 @@ export function CategoryPage() {
   });
 
   return (
-    <Layout showSearch>
+    <Layout
+      showSearch
+      hero={
+        data && (
+          <PageHero
+            crumbs={[{ label: 'Home', to: '/' }, { label: data.category.name }]}
+            code={data.category.code}
+            title={data.category.name}
+            description={data.category.description}
+            imagePath={data.category.imagePath}
+          />
+        )
+      }
+    >
       {isLoading && <Loading />}
       {error && <ErrorState message={apiErrorMessage(error)} />}
       {data && (
         <>
-          <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: data.category.name }]} />
-          <div className="mb-7 flex flex-wrap items-center gap-3">
-            <span className="id-tag">{data.category.code}</span>
-            <h1 className="text-3xl font-extrabold text-slate-900">{data.category.name}</h1>
-          </div>
-          {data.category.description && (
-            <p className="-mt-4 mb-7 max-w-2xl text-slate-500">{data.category.description}</p>
-          )}
           {data.failureTypes.length === 0 ? (
             <EmptyState message="No failure types in this category yet." />
           ) : (
-            <CardGrid>
+            <CategoryGrid>
               {data.failureTypes.map((ft) => (
-                <ItemCard
+                <CategoryCard
                   key={ft.id}
                   to={`/failure-types/${ft.id}`}
                   code={ft.code}
@@ -43,9 +48,10 @@ export function CategoryPage() {
                   subtitle={`${ft.rootCauseCount ?? 0} root cause${
                     ft.rootCauseCount === 1 ? '' : 's'
                   }`}
+                  aspect="aspect-[16/10]"
                 />
               ))}
-            </CardGrid>
+            </CategoryGrid>
           )}
         </>
       )}

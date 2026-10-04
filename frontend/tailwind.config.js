@@ -4,32 +4,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Core brand
-        ink: '#0F1419', // header / footer (deep, slightly cool near-black)
-        surface: '#EDF0F3', // page background
+        // Core brand — Yazaki-inspired: near-black header/footer, red accent
+        ink: '#111316', // header / footer (deep, near-black)
+        surface: '#F1F2F4', // page background
         paper: '#FFFFFF',
-        // Status + accent (exact brand values)
+        // Status (kept distinct from the brand red so OK/NG stays unambiguous)
         ok: { DEFAULT: '#17843F', soft: '#E7F4EC', ring: '#8FCBA5' },
-        ng: { DEFAULT: '#C21807', soft: '#FBEAE8', ring: '#E39A92' },
+        ng: { DEFAULT: '#B3261E', soft: '#FBEAE8', ring: '#E39A92' },
+        // Brand red, sampled from the Yazaki logo
         accent: {
-          DEFAULT: '#1450E0',
-          hover: '#0E3FBE',
-          soft: '#E8EEFD',
-          ring: '#9DB6F4',
+          DEFAULT: '#E60012',
+          hover: '#B8000E',
+          soft: '#FDE8EA',
+          ring: '#F2A3A9',
         },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       borderRadius: {
-        xl2: '1rem',
+        xl2: '0.625rem',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(15,20,25,0.04), 0 4px 12px rgba(15,20,25,0.06)',
-        'card-hover': '0 8px 16px rgba(15,20,25,0.08), 0 18px 40px rgba(15,20,25,0.12)',
-        pop: '0 12px 32px rgba(15,20,25,0.16)',
-        focus: '0 0 0 4px rgba(20,80,224,0.18)',
+        card: '0 1px 2px rgba(17,19,22,0.05), 0 4px 12px rgba(17,19,22,0.07)',
+        'card-hover': '0 8px 16px rgba(17,19,22,0.09), 0 18px 40px rgba(17,19,22,0.14)',
+        pop: '0 12px 32px rgba(17,19,22,0.18)',
+        focus: '0 0 0 4px rgba(230,0,18,0.16)',
       },
       backgroundImage: {
         'grid-fade':

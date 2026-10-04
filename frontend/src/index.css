@@ -15,7 +15,7 @@
   h1,
   h2,
   h3 {
-    @apply tracking-tight text-slate-900;
+    @apply font-display tracking-tight text-slate-900;
   }
   /* Visible keyboard focus everywhere for shop-floor keyboard/tab use. */
   :focus-visible {
@@ -37,7 +37,7 @@
 
   /* --- Buttons -------------------------------------------------------- */
   .btn {
-    @apply inline-flex select-none items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-150 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-all duration-150 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
     @apply btn bg-accent text-white shadow-sm hover:bg-accent-hover hover:shadow-md;
@@ -49,10 +49,10 @@
     @apply btn bg-ng text-white shadow-sm hover:brightness-110;
   }
   .btn-sm {
-    @apply gap-1.5 rounded-md px-3 py-1.5 text-xs;
+    @apply gap-1.5 rounded px-3 py-1.5 text-xs;
   }
   .btn-icon {
-    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800;
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800;
   }
 
   /* --- Surfaces ------------------------------------------------------- */
@@ -68,7 +68,7 @@
     @apply mb-1.5 block text-sm font-semibold text-slate-700;
   }
   .field-input {
-    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:shadow-focus focus:outline-none;
+    @apply w-full rounded-md border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 shadow-sm transition placeholder:text-slate-400 focus:border-accent focus:shadow-focus focus:outline-none;
   }
   .field-hint {
     @apply mt-1 text-xs text-slate-400;
@@ -77,5 +77,12 @@
   /* --- Section header ------------------------------------------------- */
   .eyebrow {
     @apply text-xs font-bold uppercase tracking-[0.14em] text-accent;
+  }
+
+  /* --- Texture ---------------------------------------------------------
+     Subtle fractal-noise overlay for dark surfaces (hero, header), so they
+     read as an intentional material rather than a flat vector fill. */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }

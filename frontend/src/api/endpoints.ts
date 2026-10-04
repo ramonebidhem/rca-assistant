@@ -143,12 +143,21 @@ export const adminApi = {
 
   // Settings / branding
   getSettings: () => api.get<SiteSettings>('/admin/settings').then((r) => r.data),
-  updateSettings: (body: { siteName?: string; slogan?: string; logoScale?: number }) =>
-    api.patch<SiteSettings>('/admin/settings', body).then((r) => r.data),
+  updateSettings: (body: {
+    siteName?: string;
+    slogan?: string;
+    footerText?: string;
+    logoScale?: number;
+  }) => api.patch<SiteSettings>('/admin/settings', body).then((r) => r.data),
   uploadLogo: (file: File) => {
     const form = new FormData();
     form.append('logo', file);
     return api.post<SiteSettings>('/admin/settings/logo', form).then((r) => r.data);
+  },
+  uploadAdminLogo: (file: File) => {
+    const form = new FormData();
+    form.append('logo', file);
+    return api.post<SiteSettings>('/admin/settings/admin-logo', form).then((r) => r.data);
   },
 };
 

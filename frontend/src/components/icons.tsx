@@ -201,6 +201,12 @@ export const SendIcon = (p: IconProps) => (
   </Base>
 );
 
+export const ShieldIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+  </Base>
+);
+
 export const SlidersIcon = (p: IconProps) => (
   <Base {...p}>
     <path d="M4 21v-7" />

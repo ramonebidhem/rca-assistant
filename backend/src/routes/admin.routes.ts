@@ -74,6 +74,17 @@ adminRouter.post(
   }),
 );
 
+adminRouter.post(
+  '/settings/admin-logo',
+  upload.single('logo'),
+  asyncHandler(async (req, res) => {
+    if (!req.file) throw badRequest('No logo file provided');
+    const logoPath = await saveLogoImage(req.file.buffer);
+    await settings.setAdminLogo(logoPath);
+    res.json(await settings.serializeSettings());
+  }),
+);
+
 // --- Categories -------------------------------------------------------------
 adminRouter.get(
   '/categories',

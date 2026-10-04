@@ -32,7 +32,9 @@ function StatCard({
           className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-accent"
         />
       </div>
-      <div className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900">{value}</div>
+      <div className="mt-4 font-display text-4xl font-bold tabular-nums tracking-tight text-slate-900">
+        {value}
+      </div>
       <div className="mt-1 flex items-center gap-2 text-sm font-medium text-slate-500">
         {label}
         {highlight && value > 0 && (

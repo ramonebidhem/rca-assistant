@@ -7,7 +7,7 @@ import { XIcon } from "../components/icons.js";
 
 export function LoginPage() {
     const { login } = useAuth();
-    const { siteName, logoUrl, logoSize } = useSettings();
+    const { siteName, adminLogoUrl, logoSize } = useSettings();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -34,7 +34,7 @@ export function LoginPage() {
             <div
                 className="pointer-events-none absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full opacity-25 blur-3xl"
                 style={{
-                    background: "radial-gradient(circle, #1450E0 0%, transparent 70%)",
+                    background: "radial-gradient(circle, #E60012 0%, transparent 70%)",
                 }}
             />
             <form
@@ -47,7 +47,7 @@ export function LoginPage() {
 
                 <div className="relative mb-6 text-center">
                     <img
-                        src={logoUrl}
+                        src={adminLogoUrl}
                         alt={siteName}
                         className="mx-auto h-auto object-contain drop-shadow-lg"
                         style={{ width: logoSize(96) }}

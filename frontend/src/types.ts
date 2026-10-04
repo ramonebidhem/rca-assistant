@@ -81,7 +81,9 @@ export interface DashboardCounters {
 export interface SiteSettings {
   siteName: string;
   slogan: string;
+  footerText: string;
   logoPath: string | null;
+  adminLogoPath: string | null;
   logoScale: number;
 }
 
